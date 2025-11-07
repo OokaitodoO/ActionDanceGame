@@ -19,9 +19,13 @@ namespace Rhythm
 
         public ClipCaps clipCaps { get; }
 
+        private RythmBehaviour template = new();
+
+
         public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
-        {
-            var playable = ScriptPlayable<RythmBehaviour>.Create(graph);                   
+        {            
+            template.SetDefiantion(noteDefination);
+            var playable = ScriptPlayable<RythmBehaviour>.Create(graph, template);           
             return playable;
         }
     }
