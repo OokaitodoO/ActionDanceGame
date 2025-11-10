@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -5,17 +6,14 @@ namespace Rhythm
 {
     public class RhythmProcessor : MonoBehaviour
     {
+        public static RhythmProcessor Instance { get; private set; }
+
         [SerializeField] private PlayableDirector director;
 
-        private double _currentTime;
+        private Dictionary<int, RhythmTrack> _rhythmTracks = new();
+        private TempoTrack _tempoTrack;
 
-        private void Update()
-        {
-            if (director != null && director.playableAsset != null)
-            {
-                _currentTime = director.time;
-            }
-        }
+        private double _currentTime;        
 
         public double GetCurrentTime()
         {
