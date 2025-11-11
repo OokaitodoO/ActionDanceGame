@@ -10,7 +10,7 @@ namespace Rhythm
 
         [SerializeField] private PlayableDirector director;
 
-        private Dictionary<int, RhythmTrack> _rhythmTracks = new();
+        private Dictionary<int, RhythmTrack> _rhythmTracks = new();        
         private TempoTrack _tempoTrack;
 
         private double _currentTime;        
@@ -19,6 +19,7 @@ namespace Rhythm
         {
             if (director != null)
             {
+                _currentTime = director.time;
                 return _currentTime;
             }
 

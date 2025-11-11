@@ -1,39 +1,54 @@
+using System;
 using UnityEngine;
 using UnityEngine.Playables;
+using Object = UnityEngine.Object;
 
 public class RhythmBehaviour : PlayableBehaviour
 {
     public GameObject prefabToSpawn;
     public Vector2 spawnLocation;
+    public double clipStartTime;
+    public double clipEndTime;
+    public double offsetHitTime;
 
-    private GameObject spawnedInstance;
+    private GameObject _spawnedInstance;
 
+    private event Action<GameObject> onSpawnInstance;
+
+    public void SetListener(Action<GameObject> action)
+    {
+        onSpawnInstance = action;
+    }
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
-        if (spawnedInstance == null && prefabToSpawn != null)
-        {
-            spawnedInstance = Object.Instantiate(prefabToSpawn, spawnLocation, Quaternion.identity);            
-            spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
+        if (_spawnedInstance == null && prefabToSpawn != null)
+        {                   
+            _spawnedInstance = Object.Instantiate(prefabToSpawn, spawnLocation, Quaternion.identity);
+            onSpawnInstance?.Invoke(_spawnedInstance);
 
+            var note = _spawnedInstance.GetComponent<BaseNote>();
+            note.InitializeOutline();
+
+            _spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
             //Debug.Log($"<color=cyan>TL Spawn:</color> '{spawnedInstance.name}' created at time {playable.GetTime()}.");
         }
     }
 
     public override void OnBehaviourPause(Playable playable, FrameData info)
     {        
-        if (spawnedInstance != null)
+        if (_spawnedInstance != null)
         {
             if (!Application.isPlaying)
             {                
-                Object.DestroyImmediate(spawnedInstance);
+                Object.DestroyImmediate(_spawnedInstance);
             }
             else
             {
-                Object.Destroy(spawnedInstance);
+                Object.Destroy(_spawnedInstance);
             }
 
-            spawnedInstance = null;
+            _spawnedInstance = null;
 
             //Debug.Log($"<color=yellow>TL Despawn:</color> Instance destroyed at time {playable.GetTime()}.");
         }
@@ -41,18 +56,29 @@ public class RhythmBehaviour : PlayableBehaviour
 
     public override void OnGraphStop(Playable playable)
     {        
-        if (spawnedInstance != null)
+        if (_spawnedInstance != null)
         {
             if (!Application.isPlaying)
             {
-                Object.DestroyImmediate(spawnedInstance);
+                Object.DestroyImmediate(_spawnedInstance);
             }
             else
             {
-                Object.Destroy(spawnedInstance);
+                Object.Destroy(_spawnedInstance);
             }
-            spawnedInstance = null;
+            _spawnedInstance = null;
             //Debug.Log("<color=red>TL Cleanup:</color> Instance destroyed during Graph Stop.");
+        }
+    }
+
+    public override void ProcessFrame(Playable playable, FrameData info, object playerData)
+    {
+        var note = _spawnedInstance.GetComponent<BaseNote>();
+        if (note)
+        {
+            var localTime = playable.GetTime();
+            offsetHitTime = (clipEndTime - clipStartTime)/2;
+            note.UpdateOutline(offsetHitTime, clipStartTime, localTime);
         }
     }
 }

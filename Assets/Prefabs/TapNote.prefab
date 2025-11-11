@@ -133,6 +133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0697ebb469f2a0e408b09a1badedbbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outLine: {fileID: 8104558870991373928}
+  speedScaling: 0
+  StartScale: {x: 6, y: 6}
+  EndScale: {x: 2, y: 2}
 --- !u!1 &7088067126201639175
 GameObject:
   m_ObjectHideFlags: 0

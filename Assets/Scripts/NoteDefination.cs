@@ -15,6 +15,12 @@ public class NoteDefination : ScriptableObject
     public double duration;
     public bool isLocked;
 
+    [Header("Clip edit")]
+    public Texture leftIcon;
+    public Texture centerIcon;
+    public Texture rightIcon;
+    public Color bgColor;
+
     public GameObject GetPrefab()
     {
         return prefab;
