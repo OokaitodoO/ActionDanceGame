@@ -9,16 +9,13 @@ public class BaseNote : MonoBehaviour
     [SerializeField] private float speedScaling;
     [SerializeField] private Vector2 StartScale;
     [SerializeField] private Vector2 EndScale;
+    
 
-    public virtual void InitializeGameobject()
-    {
-        //Send this gameobject when instantiate to game manager
-
-    }
-
-    public virtual void InitializeOutline()
+    public virtual void Initialize(PlayableDirector director)
     {
         outLine.localScale = StartScale;
+        var controller = director.gameObject.GetComponent<RhythmController>(); 
+        controller.AddQueue(this);
     }
 
     public virtual void UpdateOutline(double offsetHitTime, double startTime, double localTime)

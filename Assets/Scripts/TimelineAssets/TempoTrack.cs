@@ -14,26 +14,24 @@ public class TempoTrack : TrackAsset
     public float BPM;
     public float offset;
 
-    TempoClip template = new();
-
     /// <summary>
     /// Use for call on inspector button by TempTrackEditor
     /// </summary>
     public void GenerateTempo()
-    {   
+    {
         Debug.Log("Log from generate tempo");
 
-        double beatInterval = 60.0 / BPM;        
+        double beatInterval = 60.0 / BPM;
 
-        for (int i=0; i < 90; i++)
+        for (int i = 0; i < 90; i++)
         {
             double newStartTime = offset + (i * beatInterval);
             var newClip = CreateClip<TempoClip>();
             newClip.displayName = "Tempo";
             newClip.start = newStartTime;
             newClip.duration = FIX_DURATION;
-        }        
-    }   
+        }
+    }
 
     public void DeleteAllClip()
     {

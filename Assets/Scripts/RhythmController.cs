@@ -16,6 +16,7 @@ public class RhythmController : MonoBehaviour
 
     public void AddQueue(BaseNote note)
     {
+        Debug.Log("Add queue");
         queueNotes.Enqueue(note);
     }
 

@@ -12,16 +12,20 @@ public class RhythmBehaviour : PlayableBehaviour
     public double offsetHitTime;
 
     private GameObject _spawnedInstance;
+    private PlayableDirector _director;
+
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
+        var graph = playable.GetGraph();
+        var director = graph.GetResolver() as PlayableDirector;
+
         if (_spawnedInstance == null && prefabToSpawn != null)
         {                   
             _spawnedInstance = Object.Instantiate(prefabToSpawn, spawnLocation, Quaternion.identity);            
 
             var note = _spawnedInstance.GetComponent<BaseNote>();
-            note.InitializeOutline();
-            note.InitializeGameobject();
+            note.Initialize(director);             
 
             _spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
             //Debug.Log($"<color=cyan>TL Spawn:</color> '{spawnedInstance.name}' created at time {playable.GetTime()}.");
