@@ -1,6 +1,8 @@
 ﻿using UnityEditor;
 using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 [CustomEditor(typeof(TempoTrack))]
 public class TempoTrackEditor : Editor
@@ -23,12 +25,25 @@ public class TempoTrackEditor : Editor
         if (GUILayout.Button("Manually Generate Tempo Clips"))
         {
             if (EditorUtility.DisplayDialog(
-                "Confirm Generation",
-                "This will clear all existing tempo clips on this track. Are you sure?",
-                "Generate", "Cancel"))
+                "Confirm Generate Tempo",
+                "This will generate tempo clip with BPM",
+                "Confirm", "Cancel"))
             {
-                track.GenerateTempoMarker();
+                track.GenerateTempo();
             }
         }
-    }
+
+        GUILayout.Space(10);
+
+        if (GUILayout.Button("Manually Delete All Tempo Clip"))
+        {
+            if (EditorUtility.DisplayDialog(
+                "Confirm delete all tempo",
+                "This will delete all tempo on track",
+                "Confirm", "Cancel"))
+            {
+                track.DeleteAllClip();
+            }
+        }
+    }    
 }
