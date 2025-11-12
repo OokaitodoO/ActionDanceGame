@@ -119,6 +119,31 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
+  m_Name: New Timeline
+  m_EditorClassIdentifier: 
+  m_Version: 0
+  m_Tracks:
+  - {fileID: 6455176438674202876, guid: 4f7a573fc0078ea4b94351e19e49d5b9, type: 2}
+  - {fileID: -2353371156984369989, guid: 4f7a573fc0078ea4b94351e19e49d5b9, type: 2}
+  - {fileID: -3865858446132234017, guid: 4f7a573fc0078ea4b94351e19e49d5b9, type: 2}
+  - {fileID: -2995155430412892105, guid: 4f7a573fc0078ea4b94351e19e49d5b9, type: 2}
+  - {fileID: 6283247228735042810, guid: 4f7a573fc0078ea4b94351e19e49d5b9, type: 2}
+  m_FixedDuration: 0
+  m_EditorSettings:
+    m_Framerate: 60
+    m_ScenePreview: 1
+  m_DurationMode: 0
+  m_MarkerTrack: {fileID: 1157070856}
 --- !u!1 &189503650
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +155,6 @@ GameObject:
   - component: {fileID: 189503653}
   - component: {fileID: 189503651}
   - component: {fileID: 189503655}
-  - component: {fileID: 189503652}
   - component: {fileID: 189503654}
   m_Layer: 0
   m_Name: Director
@@ -148,7 +172,7 @@ PlayableDirector:
   m_GameObject: {fileID: 189503650}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 4f7a573fc0078ea4b94351e19e49d5b9, type: 2}
+  m_PlayableAsset: {fileID: 11400000}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -159,19 +183,6 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - debf2e3b8189d944c89141e22b20fbe4: {fileID: 1254418990}
---- !u!114 &189503652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 189503650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abb40ff1dddb94c4f87378813c4635ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  director: {fileID: 189503651}
 --- !u!4 &189503653
 Transform:
   m_ObjectHideFlags: 0
@@ -199,9 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2434819ae71b91e4e8d0d7bbb1fd2f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  processor: {fileID: 189503652}
   director: {fileID: 189503651}
-  audioSource: {fileID: 189503655}
 --- !u!82 &189503655
 AudioSource:
   m_ObjectHideFlags: 0
@@ -520,6 +529,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1157070856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a16748d9461eae46a725db9776d5390, type: 3}
+  m_Name: Markers
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
 --- !u!1 &1254418989
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,9 +33,7 @@ public class RhythmClip : PlayableAsset, ITimelineClipAsset
         template.spawnLocation = spawnPosition;
 
         template.clipStartTime = clipStartTime;
-        template.clipEndTime = clipEndTime;
-
-        template.SetListener(OnSpawnInstance); 
+        template.clipEndTime = clipEndTime;        
 
         //Get clip start time        
         /*var clip = (ITimelineClipAsset)this as TimelineClip;

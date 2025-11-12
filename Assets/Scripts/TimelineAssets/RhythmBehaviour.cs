@@ -13,22 +13,15 @@ public class RhythmBehaviour : PlayableBehaviour
 
     private GameObject _spawnedInstance;
 
-    private event Action<GameObject> onSpawnInstance;
-
-    public void SetListener(Action<GameObject> action)
-    {
-        onSpawnInstance = action;
-    }
-
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
         if (_spawnedInstance == null && prefabToSpawn != null)
         {                   
-            _spawnedInstance = Object.Instantiate(prefabToSpawn, spawnLocation, Quaternion.identity);
-            onSpawnInstance?.Invoke(_spawnedInstance);
+            _spawnedInstance = Object.Instantiate(prefabToSpawn, spawnLocation, Quaternion.identity);            
 
             var note = _spawnedInstance.GetComponent<BaseNote>();
             note.InitializeOutline();
+            note.InitializeGameobject();
 
             _spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
             //Debug.Log($"<color=cyan>TL Spawn:</color> '{spawnedInstance.name}' created at time {playable.GetTime()}.");

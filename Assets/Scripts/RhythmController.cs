@@ -1,34 +1,38 @@
-using Rhythm;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
-[RequireComponent(typeof(RhythmProcessor))]
 public class RhythmController : MonoBehaviour
 {
-    [SerializeField] private RhythmProcessor processor;
     [SerializeField] private PlayableDirector director;
-    [SerializeField] private AudioSource audioSource;
+
+    private Queue<BaseNote> queueNotes = new();
 
     private void Start()
     {
-        //Get processor cache
-        if(processor == null)
-        {
-            processor = GetComponent<RhythmProcessor>();
-        }
-
-        //Stop start play on awake
-        if (director.state == PlayState.Playing)
-        {
-            director.Stop();
-        }
+        GetTrack();
     }
 
-    public void StartDirector()
+    public void AddQueue(BaseNote note)
     {
-        if (director.state == PlayState.Paused)
+        queueNotes.Enqueue(note);
+    }
+
+    public void DeQueue()
+    {
+        queueNotes.Dequeue();
+    }
+
+    public void GetTrack()
+    {
+        var asset = director.playableAsset;
+        if (asset is TimelineAsset timeLineAsset)
         {
-            director.Play();
+            foreach (var track in timeLineAsset.GetRootTracks())
+            {
+                Debug.Log($"Track: {track.name}");
+            }
         }
     }
 }

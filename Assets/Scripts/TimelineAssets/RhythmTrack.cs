@@ -1,4 +1,3 @@
-using Rhythm;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -25,6 +24,7 @@ public class RhythmTrack : TrackAsset
         }
 
         return base.CreatePlayable(graph, gameObject, clip);
-
     }
+
+
 }

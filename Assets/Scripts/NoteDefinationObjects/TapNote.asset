@@ -17,6 +17,6 @@ MonoBehaviour:
   duration: 1
   isLocked: 1
   leftIcon: {fileID: 0}
-  centerIcon: {fileID: 2800000, guid: 8ff518c1afb66304e94b0737d71dc436, type: 3}
+  centerIcon: {fileID: 2800000, guid: 1c2a21dca3102544c951ed4850267cb9, type: 3}
   rightIcon: {fileID: 0}
   bgColor: {r: 0, g: 0.5999999, b: 0, a: 1}
