@@ -14,11 +14,21 @@ public class TempoTrackEditor : Editor
 
         if (GUILayout.Button("Generate tempo"))
         {
-            track.GenerateTempo();
+            if (EditorUtility.DisplayDialog("Confirm generate",
+                "This will generate beat from BPM.",
+                "Confirm", "Cancel"))
+            {
+                track.GenerateTempo();
+            }
         }
         if (GUILayout.Button("Clear tempo"))
         {
-            track.DeleteAllClip();
+            if (EditorUtility.DisplayDialog("Confirm Delete clips",
+                "This will Delete all clip in this track.",
+                "Confirm", "Cancel"))
+            {
+                track.DeleteAllClip();
+            }
         }
     }
 }

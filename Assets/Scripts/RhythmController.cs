@@ -6,12 +6,13 @@ using UnityEngine.Timeline;
 public class RhythmController : MonoBehaviour
 {
     [SerializeField] private PlayableDirector director;
+    [SerializeField] private Transform canvasParent;
 
     private Queue<BaseNote> queueNotes = new();
 
     private void Start()
     {
-        GetTrack();
+        InitTrack();
     }
 
     public void AddQueue(BaseNote note)
@@ -20,19 +21,27 @@ public class RhythmController : MonoBehaviour
         queueNotes.Enqueue(note);
     }
 
-    public void DeQueue()
+    public void DeQueue(BaseNote note)
     {
-        queueNotes.Dequeue();
+        if (note == queueNotes.Peek())
+        {
+            queueNotes.Dequeue();
+        }
     }
 
-    public void GetTrack()
+    public void InitTrack()
     {
         var asset = director.playableAsset;
         if (asset is TimelineAsset timeLineAsset)
         {
             foreach (var track in timeLineAsset.GetRootTracks())
             {
-                Debug.Log($"Track: {track.name}");
+                if (track is RhythmTrack)
+                {
+                    Debug.Log($"Track: {track.name}");
+                    var rhythm = track as RhythmTrack;
+                    rhythm.canvasParent = canvasParent;
+                }                
             }
         }
     }

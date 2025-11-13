@@ -22,6 +22,9 @@ public class RhythmClip : PlayableAsset, ITimelineClipAsset
     private RhythmBehaviour template = new();
     public double FixedDuration => defination.duration;
     public bool isLockedDuration => defination.isLocked;
+
+    public Transform canvasParent;
+
     [HideInInspector]
     public GameObject _spawnedInstance;
 
@@ -31,19 +34,10 @@ public class RhythmClip : PlayableAsset, ITimelineClipAsset
     {
         template.prefabToSpawn = defination.GetPrefab();
         template.spawnLocation = spawnPosition;
+        template.canvasParent = canvasParent;
 
         template.clipStartTime = clipStartTime;
         template.clipEndTime = clipEndTime;        
-
-        //Get clip start time        
-        /*var clip = (ITimelineClipAsset)this as TimelineClip;
-        if (clip != null)
-        {
-            template.clipStartTime = clip.start;
-            template.noteTime = (clip.start + clip.end) / 2;
-            Debug.Log("Assign clip attributes!");
-        }*/
-
 
         return ScriptPlayable<RhythmBehaviour>.Create(graph, template);
     }      

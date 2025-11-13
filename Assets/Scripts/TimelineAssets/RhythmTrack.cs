@@ -7,6 +7,7 @@ public class RhythmTrack : TrackAsset
 {
     //public int ID;
     //public float BPM;
+    public Transform canvasParent;
 
     protected override Playable CreatePlayable(PlayableGraph graph, GameObject gameObject, TimelineClip clip)
     {        
@@ -19,6 +20,7 @@ public class RhythmTrack : TrackAsset
                     var rhythm = m_clip.asset as RhythmClip;
                     rhythm.clipStartTime = m_clip.start;
                     rhythm.clipEndTime = m_clip.end;
+                    rhythm.canvasParent = canvasParent;
                 }
             }
         }
