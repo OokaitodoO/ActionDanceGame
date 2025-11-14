@@ -7,6 +7,7 @@ public class RhythmTrack : TrackAsset
 {
     //public int ID;
     //public float BPM;
+    [HideInInspector]
     public Transform canvasParent;
 
     protected override Playable CreatePlayable(PlayableGraph graph, GameObject gameObject, TimelineClip clip)
@@ -27,6 +28,4 @@ public class RhythmTrack : TrackAsset
 
         return base.CreatePlayable(graph, gameObject, clip);
     }
-
-
 }

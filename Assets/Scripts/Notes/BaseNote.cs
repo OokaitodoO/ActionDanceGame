@@ -14,34 +14,38 @@ public class BaseNote : MonoBehaviour
 
     protected PlayableDirector director;
     protected RhythmController controller;
-    protected Button button;
+    protected Button button;   
     
-    protected NoteAccuracyConfig config = new();
-    
-    private Canvas canvas;
+    private Canvas _canvas;
 
-    public virtual void SetDirector(PlayableDirector director)
+    protected event Action<BaseNote> OnTap;
+
+    public void SetOnTapListener(Action<BaseNote> note)
+    {
+        OnTap = note;
+    }
+
+    public virtual void SetDirectorNController(PlayableDirector director, RhythmController controller)
     {
         this.director = director;
-        controller = director.gameObject.GetComponent<RhythmController>();
+        this.controller = controller;
     }
 
     public virtual void Initialize()
     {
-        canvas = GetComponent<Canvas>();
-        if(canvas) canvas.worldCamera = Camera.main;
+        _canvas = GetComponent<Canvas>();
+        if(_canvas) _canvas.worldCamera = Camera.main;
+
         //Init button
         button = GetComponent<Button>();
-        if(button) button.onClick.AddListener(OnTap);
-        //Init outline scale
-        outLine.localScale = StartScale;        
-        //Init queue handle
-        controller.AddQueue(this);
-    }
+        if (button)
+        {
+            Debug.Log($"Found button");
+            button.onClick.AddListener(Tap);
+        }
 
-    public virtual void DestroyNote()
-    {
-        controller.DeQueue(this);
+        //Init outline scale
+        outLine.localScale = StartScale;              
     }
 
     public virtual void UpdateOutline(double offsetHitTime, double startTime, double localTime)
@@ -53,13 +57,18 @@ public class BaseNote : MonoBehaviour
         outLine.localScale = newScale;              
     }
 
-    public virtual void OnTap()
+    public virtual void Tap()
     {
-        Debug.Log($"Tap on base note");
+        OnTap?.Invoke(this);
     }
 
-    public virtual void OnHold() 
-    { 
+    public virtual void Success()
+    {
+        //When action success
+    }
+
+    public virtual void Missed()
+    {
 
     }
 }

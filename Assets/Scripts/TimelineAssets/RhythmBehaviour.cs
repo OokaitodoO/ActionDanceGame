@@ -14,78 +14,62 @@ public class RhythmBehaviour : PlayableBehaviour
 
     private GameObject _spawnedInstance;
     private BaseNote _currentNote;
-    private PlayableDirector _director;    
-
+    private RhythmController _controller;
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
-        var graph = playable.GetGraph();
-        var director = graph.GetResolver() as PlayableDirector;
-
         if (_spawnedInstance == null && prefabToSpawn != null)
-        {                   
+        {
+            //Give this game object to who needed to use
             _spawnedInstance = Object.Instantiate(prefabToSpawn, canvasParent);
             _spawnedInstance.transform.position = spawnLocation;
-
-            var note = _spawnedInstance.GetComponent<BaseNote>();
-            note.SetDirector(director);
-            note.Initialize();
-            _currentNote = note;
-
             _spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
-            //Debug.Log($"<color=cyan>TL Spawn:</color> '{spawnedInstance.name}' created at time {playable.GetTime()}.");
+
+            //Send base note to controller
+            var director = playable.GetGraph().GetResolver() as PlayableDirector;
+            _controller = director.GetComponent<RhythmController>();
+            _currentNote = _spawnedInstance.GetComponent<BaseNote>();
+            _controller.AddQueue(_currentNote);
         }
     }
 
     public override void OnBehaviourPause(Playable playable, FrameData info)
-    {        
-        if (_spawnedInstance != null)
-        {
-            if (!Application.isPlaying)
-            {                                
-                Object.DestroyImmediate(_spawnedInstance);
-            }
-            else
-            {
-                _currentNote.DestroyNote();
-                Object.Destroy(_spawnedInstance);
-            }
-
-            _spawnedInstance = null;
-            _currentNote = null;
-
-            //Debug.Log($"<color=yellow>TL Despawn:</color> Instance destroyed at time {playable.GetTime()}.");
-        }
+    {
+        DestroyNoteByBehaviour(_spawnedInstance);
     }
 
     public override void OnGraphStop(Playable playable)
+    {
+        DestroyNoteByBehaviour(_spawnedInstance);
+    }
+
+    public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {        
-        if (_spawnedInstance != null)
+        if (_currentNote)
+        {
+            var localTime = playable.GetTime();
+            offsetHitTime = (clipEndTime - clipStartTime)/2;
+            _currentNote.UpdateOutline(offsetHitTime, clipStartTime, localTime);
+        }
+    }
+
+    public void DestroyNoteByBehaviour(GameObject obj)
+    {
+        if (_spawnedInstance != null && _spawnedInstance == obj)
         {
             if (!Application.isPlaying)
-            {                
+            {
                 Object.DestroyImmediate(_spawnedInstance);
+                _controller.DeQueue();
             }
             else
-            {
-                _currentNote.DestroyNote();
+            {                
                 Object.Destroy(_spawnedInstance);
+                _controller.DeQueue();
             }
 
             _currentNote = null;
             _spawnedInstance = null;
-            //Debug.Log("<color=red>TL Cleanup:</color> Instance destroyed during Graph Stop.");
-        }
-    }
-
-    public override void ProcessFrame(Playable playable, FrameData info, object playerData)
-    {
-        var note = _spawnedInstance.GetComponent<BaseNote>();
-        if (note)
-        {
-            var localTime = playable.GetTime();
-            offsetHitTime = (clipEndTime - clipStartTime)/2;
-            note.UpdateOutline(offsetHitTime, clipStartTime, localTime);
         }
     }
 }

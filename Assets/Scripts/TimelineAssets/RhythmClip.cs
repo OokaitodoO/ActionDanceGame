@@ -23,6 +23,7 @@ public class RhythmClip : PlayableAsset, ITimelineClipAsset
     public double FixedDuration => defination.duration;
     public bool isLockedDuration => defination.isLocked;
 
+    [HideInInspector]
     public Transform canvasParent;
 
     [HideInInspector]

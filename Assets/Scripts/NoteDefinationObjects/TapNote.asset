@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4209982530220668858, guid: 812e3dd19afde2c4cada26c430b6c08b, type: 3}
   type: 0
-  duration: 5
+  duration: 3
   isLocked: 1
   leftIcon: {fileID: 0}
   centerIcon: {fileID: 2800000, guid: 1c2a21dca3102544c951ed4850267cb9, type: 3}
