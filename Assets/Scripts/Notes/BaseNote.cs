@@ -44,14 +44,6 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public virtual void Initialize()
     {
-        //Init button
-        button = GetComponent<Button>();
-        if (button)
-        {
-            Debug.Log($"Found button");
-            button.onClick.AddListener(Tap);
-        }
-
         //Set accuracy
         accuracy = AccuracyType.Miss;
 
@@ -67,11 +59,6 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         Vector3 newScale = Vector3.Lerp(StartScale, EndScale, T_norm);
         outLine.localScale = newScale;              
     }
-
-    public virtual void Tap()
-    {        
-        OnTap?.Invoke(this);
-    }
     
     public virtual void Success()
     {           
@@ -85,7 +72,7 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        
+        OnTap?.Invoke(this);
     }
 
     public virtual void OnPointerUp(PointerEventData eventData)
@@ -93,8 +80,8 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public virtual void OnDrag(PointerEventData eventData)
     {
-        throw new NotImplementedException();
+        
     }
 }

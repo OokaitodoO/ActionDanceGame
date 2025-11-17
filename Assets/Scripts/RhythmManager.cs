@@ -124,6 +124,8 @@ public class RhythmManager : MonoBehaviour
         note.accuracy = _accuracyConfig.CalculateAccuracy(director.time, note.hitTime);
         AddSocre(note.accuracy);
         rhythmUI.UpdateAccuracy(note.accuracy);
+
+        Destroy(note.gameObject);
     }
 
     private void OnMissNote(BaseNote note)
