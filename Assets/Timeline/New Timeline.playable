@@ -98,6 +98,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &-7153776571405671001
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
+  m_Name: RhythmClip
+  m_EditorClassIdentifier: 
+  clipStartTime: 1.2333333333333334
+  clipEndTime: 4.233333333333333
+  defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
+  spawnTime: 0
+  spawnPosition: {x: 100, y: 0, z: 0}
+  canvasParent: {fileID: 0}
+  _spawnedInstance: {fileID: 0}
 --- !u!114 &-6819815844650398766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -294,6 +313,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &-4438213568273898934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
+  m_Name: RhythmClip(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  clipStartTime: 2.6666666666666665
+  clipEndTime: 5.666666666666666
+  defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
+  spawnTime: 0
+  spawnPosition: {x: 300, y: 0, z: 0}
+  canvasParent: {fileID: 0}
+  _spawnedInstance: {fileID: 0}
 --- !u!114 &-4239535709242520617
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -406,25 +444,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &-3457574210089789960
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
-  m_Name: RhythmClip(Clone)
-  m_EditorClassIdentifier: 
-  clipStartTime: 1.9833333333333334
-  clipEndTime: 4.983333333333333
-  defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
-  spawnTime: 0
-  spawnPosition: {x: 0, y: 0, z: 0}
-  canvasParent: {fileID: 0}
-  _spawnedInstance: {fileID: 0}
 --- !u!114 &-3424999292399805843
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -461,9 +480,9 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 2.4833333333333334
+    m_Start: 2.6666666666666665
     m_ClipIn: 0
-    m_Asset: {fileID: 6842774197657120724}
+    m_Asset: {fileID: -4438213568273898934}
     m_Duration: 3
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2484070894964000782}
@@ -624,9 +643,9 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.9833333333333334
+    m_Start: 1.2333333333333334
     m_ClipIn: 0
-    m_Asset: {fileID: -3457574210089789960}
+    m_Asset: {fileID: -7153776571405671001}
     m_Duration: 3
     m_TimeScale: 1
     m_ParentTrack: {fileID: -1909588877953723132}
@@ -860,25 +879,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &1702016442805502257
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
-  m_Name: RhythmClip(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  clipStartTime: 2.2173076926802215
-  clipEndTime: 5.2173076926802215
-  defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
-  spawnTime: 0
-  spawnPosition: {x: 1, y: 0, z: 0}
-  canvasParent: {fileID: 0}
-  _spawnedInstance: {fileID: 0}
 --- !u!114 &2242133067117655094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1371,6 +1371,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &6103506867015622399
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
+  m_Name: RhythmClip(Clone)
+  m_EditorClassIdentifier: 
+  clipStartTime: 1.8711538465263753
+  clipEndTime: 4.871153846526376
+  defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
+  spawnTime: 0
+  spawnPosition: {x: 200, y: 0, z: 0}
+  canvasParent: {fileID: 0}
+  _spawnedInstance: {fileID: 0}
 --- !u!114 &6335476611270586325
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1455,25 +1474,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &6842774197657120724
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
-  m_Name: RhythmClip(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  clipStartTime: 2.4833333333333334
-  clipEndTime: 5.483333333333333
-  defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
-  spawnTime: 0
-  spawnPosition: {x: 2, y: 0, z: 0}
-  canvasParent: {fileID: 0}
-  _spawnedInstance: {fileID: 0}
 --- !u!114 &6921797057582636723
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1510,9 +1510,9 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 2.2173076926802215
+    m_Start: 1.8711538465263753
     m_ClipIn: 0
-    m_Asset: {fileID: 1702016442805502257}
+    m_Asset: {fileID: 6103506867015622399}
     m_Duration: 3
     m_TimeScale: 1
     m_ParentTrack: {fileID: 7261848529889876302}

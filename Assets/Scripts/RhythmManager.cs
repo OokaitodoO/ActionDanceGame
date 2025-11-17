@@ -5,15 +5,21 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
-public class RhythmController : MonoBehaviour
+public class RhythmManager : MonoBehaviour
 {
     [SerializeField] private PlayableDirector director;
     [SerializeField] private Transform canvasParent;
+    [Space]
+    [SerializeField] private RhythmUI rhythmUI;
 
     private Queue<BaseNote> _queueNotes = new();
     private List<BaseNote> _notes = new();
 
-    private NoteAccuracyConfig _config = new();
+    private NoteAccuracyConfig _accuracyConfig = new();
+    private ComboConfig _comboConfig = new();
+
+    private int _currentCombo;
+    private int _currentScore;    
 
     private void OnValidate()
     {
@@ -22,8 +28,9 @@ public class RhythmController : MonoBehaviour
 
     private void Start()
     {
-        InitTrack();
-    }    
+        //InitTrack();
+        Initialize();        
+    }
 
     /*    public void AddNoteList(BaseNote note)
         {
@@ -35,6 +42,22 @@ public class RhythmController : MonoBehaviour
             _notes.Remove(note);
         }*/
 
+    #region GameState
+    public void Initialize()
+    {
+        ResetCombo();
+        ResetSocre();
+        InitTrack();
+
+        director.playOnAwake = false;
+    }
+
+    public void StartGame()
+    {
+        director.Play();
+    }
+    #endregion
+
     public void AddQueue(BaseNote note)
     {
         Debug.Log("Add queue");
@@ -44,6 +67,7 @@ public class RhythmController : MonoBehaviour
         note.SetDirectorNController(director, this);
         note.Initialize();
         note.SetOnTapListener(OnTapNote);
+        note.SetOnSuccessListener(OnSuccessNote);        
         SetNoteToFront();
     }
 
@@ -52,19 +76,10 @@ public class RhythmController : MonoBehaviour
         //Remove queue
         if (_queueNotes.Count > 0)
         {
+            Debug.Log("Dequeue note");
             _queueNotes.Dequeue();
         }
-    }
-
-    public bool IsCurrentPeek(BaseNote note)
-    {
-        if (note == _queueNotes.Peek())
-        {
-            return true;
-        }
-
-        return false;
-    }
+    }    
 
     public void InitTrack()
     {
@@ -77,14 +92,14 @@ public class RhythmController : MonoBehaviour
                 {
                     Debug.Log($"Track: {track.name}");
                     var rhythm = track as RhythmTrack;
-                    if (!rhythm.canvasParent)
+                    if (rhythm)
                     {
                         rhythm.canvasParent = canvasParent;
                     }
                 }
             }
         }
-    }
+    }        
 
     private void CalculateScore()
     {
@@ -93,20 +108,60 @@ public class RhythmController : MonoBehaviour
 
     private void OnTapNote(BaseNote note)
     {
-        //Tap out of note => miss
-        //Scored
-        Destroy(note.gameObject);
-        //Dequeue and destroy note
-        DeQueue();
+        Debug.Log("Tap note");
+        //Destroy note
+        //Dequeue and destroy note        
         //Set current note to front
         SetNoteToFront();
+    }
+
+    private void OnSuccessNote(BaseNote note)
+    {                
+        //Set accuracy
+        DeQueue();
+        SetNoteToFront();
+        AddSocre(note.accuracy);        
+    }
+
+    private void OnMissNote(BaseNote note)
+    {
+        DeQueue();
+        SetNoteToFront();
+        ResetCombo();
     }
 
     private void SetNoteToFront()
     {
         if (_queueNotes.Count > 0)
         {
+            var button = _queueNotes.Peek().GetComponent<Button>();
+            if(button) button.interactable = true;
             _queueNotes.Peek().transform.SetAsLastSibling();
         }
+    }
+
+    private void ResetCombo()
+    {
+        _currentCombo = 0;
+        rhythmUI.UpdateCombo(_currentCombo);
+    }
+
+    private void ResetSocre()
+    {
+        _currentScore = 0;
+        rhythmUI.UpdateScore(_currentCombo);
+    }
+
+    private void AddSocre(AccuracyType accuracy)
+    {
+        //score += combo multiplier * accuracy point
+        _currentScore += Mathf.CeilToInt(_comboConfig.GetMultiplier(_currentCombo) * _accuracyConfig.GetScoreByAccuracyType(accuracy));
+        rhythmUI.UpdateScore(_currentScore);
+    }
+
+    private void AddCombo()
+    {
+        _currentCombo++;
+        rhythmUI.UpdateCombo(_currentCombo);
     }
 }

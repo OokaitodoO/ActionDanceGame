@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 public class RhythmBehaviour : PlayableBehaviour
 {
     public GameObject prefabToSpawn;
-    public Vector2 spawnLocation;
+    public Vector3 spawnLocation;
     public Transform canvasParent;
     public double clipStartTime;
     public double clipEndTime;
@@ -14,7 +14,7 @@ public class RhythmBehaviour : PlayableBehaviour
 
     private GameObject _spawnedInstance;
     private BaseNote _currentNote;
-    private RhythmController _controller;
+    private RhythmManager _controller;
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
@@ -22,12 +22,14 @@ public class RhythmBehaviour : PlayableBehaviour
         {
             //Give this game object to who needed to use
             _spawnedInstance = Object.Instantiate(prefabToSpawn, canvasParent);
-            _spawnedInstance.transform.position = spawnLocation;
+            var rect = _spawnedInstance.GetComponent<RectTransform>();
+            if(rect)
+                rect.localPosition = spawnLocation;                   
             _spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
 
             //Send base note to controller
             var director = playable.GetGraph().GetResolver() as PlayableDirector;
-            _controller = director.GetComponent<RhythmController>();
+            _controller = director.GetComponent<RhythmManager>();
             _currentNote = _spawnedInstance.GetComponent<BaseNote>();
             _controller.AddQueue(_currentNote);
         }

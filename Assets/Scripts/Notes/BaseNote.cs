@@ -13,19 +13,31 @@ public class BaseNote : MonoBehaviour
     [SerializeField] private Vector2 EndScale;
 
     protected PlayableDirector director;
-    protected RhythmController controller;
-    protected Button button;   
-    
-    private Canvas _canvas;
+    protected RhythmManager controller;
+    protected Button button;
+
+    public AccuracyType accuracy;
 
     protected event Action<BaseNote> OnTap;
+    protected event Action<BaseNote> OnSuccess;
+    protected event Action<BaseNote> OnMiss;
 
-    public void SetOnTapListener(Action<BaseNote> note)
+    public void SetOnTapListener(Action<BaseNote> onTap)
     {
-        OnTap = note;
+        OnTap = onTap;
     }
 
-    public virtual void SetDirectorNController(PlayableDirector director, RhythmController controller)
+    public void SetOnSuccessListener(Action<BaseNote> onSuccess)
+    {
+        OnSuccess = onSuccess;
+    }
+
+    public void SetOnMissListener(Action<BaseNote> onMiss)
+    {
+        OnMiss = onMiss;
+    }
+
+    public virtual void SetDirectorNController(PlayableDirector director, RhythmManager controller)
     {
         this.director = director;
         this.controller = controller;
@@ -33,9 +45,6 @@ public class BaseNote : MonoBehaviour
 
     public virtual void Initialize()
     {
-        _canvas = GetComponent<Canvas>();
-        if(_canvas) _canvas.worldCamera = Camera.main;
-
         //Init button
         button = GetComponent<Button>();
         if (button)
@@ -43,6 +52,9 @@ public class BaseNote : MonoBehaviour
             Debug.Log($"Found button");
             button.onClick.AddListener(Tap);
         }
+
+        //Set accuracy
+        accuracy = AccuracyType.Miss;
 
         //Init outline scale
         outLine.localScale = StartScale;              
@@ -58,17 +70,17 @@ public class BaseNote : MonoBehaviour
     }
 
     public virtual void Tap()
-    {
+    {        
         OnTap?.Invoke(this);
     }
-
+    
     public virtual void Success()
-    {
-        //When action success
+    {           
+        OnSuccess?.Invoke(this);
     }
 
     public virtual void Missed()
     {
-
+        OnMiss?.Invoke(this);
     }
 }

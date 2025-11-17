@@ -1,12 +1,22 @@
 using UnityEngine;
 
 public class TapNoteController : BaseNote
-{    
-    public override void Tap()
-    {        
-        base.Tap();
+{
+    public override void Initialize()
+    {
+        base.Initialize();
+        //Init specific tap note action
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(Success);
+    }
 
-        //Check current time in Timeline director for accuracy
-        Debug.Log($"Click button tap note");        
+    public override void Success()
+    {
+        base.Success();
+
+        //Calculate accuracy
+
+
+        Destroy(gameObject);
     }
 }
