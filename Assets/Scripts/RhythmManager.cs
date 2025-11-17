@@ -67,7 +67,8 @@ public class RhythmManager : MonoBehaviour
         note.SetDirectorNController(director, this);
         note.Initialize();
         note.SetOnTapListener(OnTapNote);
-        note.SetOnSuccessListener(OnSuccessNote);        
+        note.SetOnSuccessListener(OnSuccessNote);
+        note.SetOnMissListener(OnMissNote);
         SetNoteToFront();
     }
 
@@ -120,7 +121,9 @@ public class RhythmManager : MonoBehaviour
         //Set accuracy
         DeQueue();
         SetNoteToFront();
-        AddSocre(note.accuracy);        
+        note.accuracy = _accuracyConfig.CalculateAccuracy(director.time, note.hitTime);
+        AddSocre(note.accuracy);
+        rhythmUI.UpdateAccuracy(note.accuracy);
     }
 
     private void OnMissNote(BaseNote note)
@@ -128,6 +131,7 @@ public class RhythmManager : MonoBehaviour
         DeQueue();
         SetNoteToFront();
         ResetCombo();
+        rhythmUI.UpdateAccuracy(note.accuracy);        
     }
 
     private void SetNoteToFront()
@@ -154,6 +158,14 @@ public class RhythmManager : MonoBehaviour
 
     private void AddSocre(AccuracyType accuracy)
     {
+        if (accuracy == AccuracyType.Miss)
+        {
+            ResetCombo();
+        }
+        else
+        {
+            AddCombo();
+        }
         //score += combo multiplier * accuracy point
         _currentScore += Mathf.CeilToInt(_comboConfig.GetMultiplier(_currentCombo) * _accuracyConfig.GetScoreByAccuracyType(accuracy));
         rhythmUI.UpdateScore(_currentScore);

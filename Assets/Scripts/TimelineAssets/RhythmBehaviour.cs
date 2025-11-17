@@ -31,6 +31,9 @@ public class RhythmBehaviour : PlayableBehaviour
             var director = playable.GetGraph().GetResolver() as PlayableDirector;
             _controller = director.GetComponent<RhythmManager>();
             _currentNote = _spawnedInstance.GetComponent<BaseNote>();
+            offsetHitTime = (clipEndTime - clipStartTime) / 2;
+            _currentNote.hitTime = clipStartTime + offsetHitTime;
+            
             _controller.AddQueue(_currentNote);
         }
     }
@@ -49,8 +52,7 @@ public class RhythmBehaviour : PlayableBehaviour
     {        
         if (_currentNote)
         {
-            var localTime = playable.GetTime();
-            offsetHitTime = (clipEndTime - clipStartTime)/2;
+            var localTime = playable.GetTime();           
             _currentNote.UpdateOutline(offsetHitTime, clipStartTime, localTime);
         }
     }
@@ -68,6 +70,7 @@ public class RhythmBehaviour : PlayableBehaviour
             {                
                 Object.Destroy(_spawnedInstance);
                 _controller.DeQueue();
+                _currentNote.Missed();
             }
 
             _currentNote = null;

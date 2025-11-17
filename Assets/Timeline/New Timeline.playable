@@ -1,5 +1,98 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9202733980296546880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f776a378210d14c8c28f2aa088aa29, type: 3}
+  m_Name: Rhythm Track (3)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 1.5166666666666666
+    m_ClipIn: 0
+    m_Asset: {fileID: 4543961319819309795}
+    m_Duration: 2.5
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -9202733980296546880}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: TapNote
+  m_Markers:
+    m_Objects: []
+  canvasParent: {fileID: 0}
 --- !u!114 &-9082273059198930370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,10 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
   m_Name: RhythmClip
   m_EditorClassIdentifier: 
-  clipStartTime: 1.2333333333333334
-  clipEndTime: 4.233333333333333
+  clipStartTime: 0.38333333333333336
+  clipEndTime: 2.8833333333333333
   defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
-  spawnTime: 0
   spawnPosition: {x: 100, y: 0, z: 0}
   canvasParent: {fileID: 0}
   _spawnedInstance: {fileID: 0}
@@ -325,10 +417,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
   m_Name: RhythmClip(Clone)(Clone)
   m_EditorClassIdentifier: 
-  clipStartTime: 2.6666666666666665
-  clipEndTime: 5.666666666666666
+  clipStartTime: 0.8666666666666667
+  clipEndTime: 3.3666666666666667
   defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
-  spawnTime: 0
   spawnPosition: {x: 300, y: 0, z: 0}
   canvasParent: {fileID: 0}
   _spawnedInstance: {fileID: 0}
@@ -458,6 +549,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &-2845163077663209522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
+  m_Name: RhythmClip
+  m_EditorClassIdentifier: 
+  clipStartTime: 3.525000000372529
+  clipEndTime: 6.025000000372529
+  defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
+  spawnPosition: {x: 291, y: 228, z: 0}
+  canvasParent: {fileID: 0}
+  _spawnedInstance: {fileID: 0}
 --- !u!114 &-2484070894964000782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -480,10 +589,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 2.6666666666666665
+    m_Start: 0.8666666666666667
     m_ClipIn: 0
     m_Asset: {fileID: -4438213568273898934}
-    m_Duration: 3
+    m_Duration: 2.5
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2484070894964000782}
     m_EaseInDuration: 0
@@ -593,6 +702,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &-2102219470000664751
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f776a378210d14c8c28f2aa088aa29, type: 3}
+  m_Name: Rhythm Track (4)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 2.216666666666667
+    m_ClipIn: 0
+    m_Asset: {fileID: 7159213160880952929}
+    m_Duration: 2.5
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -2102219470000664751}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: TapNote
+  m_Markers:
+    m_Objects: []
+  canvasParent: {fileID: 0}
 --- !u!114 &-1996930762163032429
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -643,10 +845,79 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.2333333333333334
+    m_Start: 0.38333333333333336
     m_ClipIn: 0
     m_Asset: {fileID: -7153776571405671001}
-    m_Duration: 3
+    m_Duration: 2.5
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -1909588877953723132}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: TapNote
+  - m_Version: 1
+    m_Start: 3.525000000372529
+    m_ClipIn: 0
+    m_Asset: {fileID: -2845163077663209522}
+    m_Duration: 2.5
     m_TimeScale: 1
     m_ParentTrack: {fileID: -1909588877953723132}
     m_EaseInDuration: 0
@@ -788,6 +1059,9 @@ MonoBehaviour:
   - {fileID: -1909588877953723132}
   - {fileID: 7261848529889876302}
   - {fileID: -2484070894964000782}
+  - {fileID: -9202733980296546880}
+  - {fileID: -2102219470000664751}
+  - {fileID: 3909027026270616038}
   - {fileID: 8561538699059180298}
   m_FixedDuration: 0
   m_EditorSettings:
@@ -1005,11 +1279,11 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 2545392509241721035}
-    m_Duration: 245.55102040816325
+    m_Duration: 90
     m_TimeScale: 1
     m_ParentTrack: {fileID: 3582002890372485082}
     m_EaseInDuration: 0
-    m_EaseOutDuration: 0
+    m_EaseOutDuration: 3
     m_BlendInDuration: -1
     m_BlendOutDuration: -1
     m_MixInCurve:
@@ -1119,6 +1393,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &3909027026270616038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f776a378210d14c8c28f2aa088aa29, type: 3}
+  m_Name: Rhythm Track (5)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
+  canvasParent: {fileID: 0}
 --- !u!114 &3909087587303143542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1161,6 +1459,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &4543961319819309795
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
+  m_Name: RhythmClip
+  m_EditorClassIdentifier: 
+  clipStartTime: 1.5166666666666666
+  clipEndTime: 4.016666666666667
+  defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
+  spawnPosition: {x: -336, y: 127, z: 0}
+  canvasParent: {fileID: 0}
+  _spawnedInstance: {fileID: 0}
 --- !u!114 &4574767307834909920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1383,10 +1699,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
   m_Name: RhythmClip(Clone)
   m_EditorClassIdentifier: 
-  clipStartTime: 1.8711538465263753
-  clipEndTime: 4.871153846526376
+  clipStartTime: 0.6
+  clipEndTime: 3.1
   defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
-  spawnTime: 0
   spawnPosition: {x: 200, y: 0, z: 0}
   canvasParent: {fileID: 0}
   _spawnedInstance: {fileID: 0}
@@ -1488,6 +1803,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &7159213160880952929
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
+  m_Name: RhythmClip
+  m_EditorClassIdentifier: 
+  clipStartTime: 2.216666666666667
+  clipEndTime: 4.716666666666667
+  defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
+  spawnPosition: {x: -335, y: -215, z: 0}
+  canvasParent: {fileID: 0}
+  _spawnedInstance: {fileID: 0}
 --- !u!114 &7261848529889876302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1510,10 +1843,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.8711538465263753
+    m_Start: 0.6
     m_ClipIn: 0
     m_Asset: {fileID: 6103506867015622399}
-    m_Duration: 3
+    m_Duration: 2.5
     m_TimeScale: 1
     m_ParentTrack: {fileID: 7261848529889876302}
     m_EaseInDuration: 0

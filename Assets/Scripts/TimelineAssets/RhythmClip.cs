@@ -16,7 +16,7 @@ public class RhythmClip : PlayableAsset, ITimelineClipAsset
 
     [SerializeField] private NoteDefination defination;
     [Header("Settings")]
-    [SerializeField] private double spawnTime;
+    //[SerializeField] private double spawnTime;
     [SerializeField] private Vector3 spawnPosition;
 
     private RhythmBehaviour template = new();

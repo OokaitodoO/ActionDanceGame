@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class BaseNote : MonoBehaviour
+public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     [Header("Out line")]
     [SerializeField] private Transform outLine;
@@ -12,11 +12,11 @@ public class BaseNote : MonoBehaviour
     [SerializeField] private Vector2 StartScale;
     [SerializeField] private Vector2 EndScale;
 
-    protected PlayableDirector director;
-    protected RhythmManager controller;
+    protected PlayableDirector director;    
     protected Button button;
 
     public AccuracyType accuracy;
+    public double hitTime;
 
     protected event Action<BaseNote> OnTap;
     protected event Action<BaseNote> OnSuccess;
@@ -39,8 +39,7 @@ public class BaseNote : MonoBehaviour
 
     public virtual void SetDirectorNController(PlayableDirector director, RhythmManager controller)
     {
-        this.director = director;
-        this.controller = controller;
+        this.director = director;        
     }
 
     public virtual void Initialize()
@@ -82,5 +81,20 @@ public class BaseNote : MonoBehaviour
     public virtual void Missed()
     {
         OnMiss?.Invoke(this);
+    }
+
+    public virtual void OnPointerDown(PointerEventData eventData)
+    {
+        
+    }
+
+    public virtual void OnPointerUp(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        throw new NotImplementedException();
     }
 }
