@@ -2127,7 +2127,76 @@ MonoBehaviour:
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 11400000}
   m_Children: []
-  m_Clips: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 21.717307692680222
+    m_ClipIn: 0
+    m_Asset: {fileID: 5749338433774750936}
+    m_Duration: 8.389102564475095
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 3909027026270616038}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: NewSlideDefination
   m_Markers:
     m_Objects: []
   canvasParent: {fileID: 0}
@@ -2393,6 +2462,24 @@ MonoBehaviour:
   clipEndTime: 3.1
   defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
   spawnPosition: {x: 0, y: 0, z: 0}
+  canvasParent: {fileID: 0}
+  _spawnedInstance: {fileID: 0}
+--- !u!114 &5749338433774750936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
+  m_Name: RhythmClip
+  m_EditorClassIdentifier: 
+  clipStartTime: 21.717307692680222
+  clipEndTime: 30.106410257155318
+  defination: {fileID: 11400000, guid: 4496d71a6b60acb4682aa0c5f4f928ef, type: 2}
+  spawnPosition: {x: 0, y: 200, z: 0}
   canvasParent: {fileID: 0}
   _spawnedInstance: {fileID: 0}
 --- !u!114 &5792576036400990445

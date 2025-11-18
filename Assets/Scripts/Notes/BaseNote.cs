@@ -17,6 +17,7 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public AccuracyType accuracy;
     public double hitTime;
+    public bool interacable;
     protected NoteAccuracyConfig _accuracyConfig = new();
 
     protected event Action<BaseNote> OnTap;
@@ -72,7 +73,7 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
-    {
+    {        
         OnTap?.Invoke(this);
     }
 

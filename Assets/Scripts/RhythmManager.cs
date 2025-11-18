@@ -164,9 +164,9 @@ public class RhythmManager : MonoBehaviour
     {
         if (_queueNotes.Count > 0)
         {
-            var button = _queueNotes.Peek().GetComponent<Button>();
-            if(button) button.interactable = true;
-            _queueNotes.Peek().transform.SetAsLastSibling();
+            var note = _queueNotes.Peek().GetComponent<BaseNote>();
+            if (note) note.interacable = true;
+            note.transform.SetAsLastSibling();
         }
     }
 

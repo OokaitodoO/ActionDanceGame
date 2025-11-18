@@ -37,30 +37,36 @@ public class SwipeNoteController : BaseNote
     public override void OnPointerDown(PointerEventData eventData)
     {
         //Get start pointer position
-        startPos = eventData.position;
+        if (interacable)
+        {
+            startPos = eventData.position;
+        }
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
-        //Get current pointer position
-        currentPos = eventData.position;
-        //Calculate direction
-        var delta = currentPos - startPos;
-        var magnitude = delta.magnitude;
-        var distance = Vector2.Distance(currentPos, startPos);
-        if (magnitude >= MIN_DISTANCE)
+        if (interacable)
         {
-            //Set input direction
-            inputDirection = SwipeDirection(delta);
-            //Check input direction = random direction?
-            if (inputDirection == direction)
+            //Get current pointer position
+            currentPos = eventData.position;
+            //Calculate direction
+            var delta = currentPos - startPos;
+            var magnitude = delta.magnitude;
+            var distance = Vector2.Distance(currentPos, startPos);
+            if (magnitude >= MIN_DISTANCE)
             {
-                accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
-                base.Success();
-            }
-            else
-            {
-                base.Missed();
+                //Set input direction
+                inputDirection = SwipeDirection(delta);
+                //Check input direction = random direction?
+                if (inputDirection == direction)
+                {
+                    accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
+                    base.Success();
+                }
+                else
+                {
+                    base.Missed();
+                }
             }
         }
     }

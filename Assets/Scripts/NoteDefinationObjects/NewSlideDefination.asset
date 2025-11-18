@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed33ef7fd49eb9c47bb739883c0273f7, type: 3}
+  m_Name: NewSlideDefination
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4209982530220668858, guid: e92a23c3ffad59742b89abd283eacf12, type: 3}
+  type: 1
+  duration: 2.5
+  isLocked: 0
+  leftIcon: {fileID: 0}
+  centerIcon: {fileID: 0}
+  rightIcon: {fileID: 0}
+  bgColor: {r: 0, g: 0, b: 0, a: 0}
