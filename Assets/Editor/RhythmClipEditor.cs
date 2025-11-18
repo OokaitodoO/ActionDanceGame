@@ -38,14 +38,14 @@ public class RhythmClipEditor : ClipEditor
             var iconSize = new Vector2(32, 32);
 
             var startRegion = new Rect(
-                region.position.position.x - iconSize.x / 2,
-                region.position.position.y,
+                region.position.position.x,
+                ((region.position.position.y + region.position.height) / 2) - iconSize.y / 2,
                 iconSize.x,
                 iconSize.y);
 
             var endRegion = new Rect(
-                region.position.position.x + region.position.width - iconSize.x / 2,
-                region.position.position.y,
+                region.position.position.x + region.position.width - iconSize.x,
+                ((region.position.position.y + region.position.height) / 2) - iconSize.y / 2,
                 iconSize.x,
                 iconSize.y);
 

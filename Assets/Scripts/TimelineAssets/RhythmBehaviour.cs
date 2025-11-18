@@ -12,69 +12,69 @@ public class RhythmBehaviour : PlayableBehaviour
     public double clipEndTime;
     public double offsetHitTime;
 
-    private GameObject _spawnedInstance;
-    private BaseNote _currentNote;
-    private RhythmManager _controller;
+    protected GameObject spawnedInstance;
+    protected BaseNote currentNote;
+    protected RhythmManager controller;
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
-        if (_spawnedInstance == null && prefabToSpawn != null)
+        if (spawnedInstance == null && prefabToSpawn != null)
         {
             //Give this game object to who needed to use
-            _spawnedInstance = Object.Instantiate(prefabToSpawn, canvasParent);
-            var rect = _spawnedInstance.GetComponent<RectTransform>();
+            spawnedInstance = Object.Instantiate(prefabToSpawn, canvasParent);
+            var rect = spawnedInstance.GetComponent<RectTransform>();
             if(rect)
                 rect.localPosition = spawnLocation;                   
-            _spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
+            spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
 
             //Send base note to controller
             var director = playable.GetGraph().GetResolver() as PlayableDirector;
-            _controller = director.GetComponent<RhythmManager>();
-            _currentNote = _spawnedInstance.GetComponent<BaseNote>();
+            controller = director.GetComponent<RhythmManager>();
+            currentNote = spawnedInstance.GetComponent<BaseNote>();
             offsetHitTime = (clipEndTime - clipStartTime) / 2;
-            _currentNote.hitTime = clipStartTime + offsetHitTime;
+            currentNote.hitTime = clipStartTime + offsetHitTime;
             
-            _controller.AddQueue(_currentNote);
+            controller.AddQueue(currentNote);
         }
     }
 
     public override void OnBehaviourPause(Playable playable, FrameData info)
     {
-        DestroyNoteByBehaviour(_spawnedInstance);
+        DestroyNoteByBehaviour(spawnedInstance);
     }
 
     public override void OnGraphStop(Playable playable)
     {
-        DestroyNoteByBehaviour(_spawnedInstance);
+        DestroyNoteByBehaviour(spawnedInstance);
     }
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {        
-        if (_currentNote)
+        if (currentNote)
         {
             var localTime = playable.GetTime();           
-            _currentNote.UpdateOutline(offsetHitTime, clipStartTime, localTime);
+            currentNote.UpdateOutline(offsetHitTime, clipStartTime, localTime);
         }
     }
 
     public void DestroyNoteByBehaviour(GameObject obj)
     {
-        if (_spawnedInstance != null && _spawnedInstance == obj)
+        if (spawnedInstance != null && spawnedInstance == obj)
         {
             if (!Application.isPlaying)
             {
-                Object.DestroyImmediate(_spawnedInstance);
-                _controller.DeQueue();
+                Object.DestroyImmediate(spawnedInstance);
+                controller.DeQueue();
             }
             else
             {                
-                Object.Destroy(_spawnedInstance);
-                _controller.DeQueue();
-                _currentNote.Missed();
+                Object.Destroy(spawnedInstance);
+                controller.DeQueue();
+                currentNote.Missed();
             }
 
-            _currentNote = null;
-            _spawnedInstance = null;
+            currentNote = null;
+            spawnedInstance = null;
         }
     }
 }

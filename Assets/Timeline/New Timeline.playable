@@ -1278,6 +1278,75 @@ MonoBehaviour:
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
     m_DisplayName: TapNote
+  - m_Version: 1
+    m_Start: 23.683333333333334
+    m_ClipIn: 0
+    m_Asset: {fileID: 2764557405501471828}
+    m_Duration: 2.5
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -2102219470000664751}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: TapNote
   m_Markers:
     m_Objects: []
   canvasParent: {fileID: 0}
@@ -1880,6 +1949,24 @@ MonoBehaviour:
   m_bufferingTime: 0.1
   m_ClipProperties:
     volume: 1
+--- !u!114 &2764557405501471828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
+  m_Name: RhythmClip
+  m_EditorClassIdentifier: 
+  clipStartTime: 23.683333333333334
+  clipEndTime: 26.183333333333334
+  defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
+  spawnPosition: {x: 0, y: 0, z: 0}
+  canvasParent: {fileID: 0}
+  _spawnedInstance: {fileID: 0}
 --- !u!114 &2916232733168904835
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2079,6 +2166,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipIconTexture: {fileID: 0}
   beatColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &3794325723403286614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6d93923107466428e8e1684639eccc, type: 3}
+  m_Name: SlideClip
+  m_EditorClassIdentifier: 
+  clipStartTime: 23.683333333333334
+  clipEndTime: 36.60641025641026
+  defination: {fileID: 11400000, guid: 7c33ddeff4250e044aac967327b6edf7, type: 2}
+  spawnPosition: {x: 0, y: 244, z: 0}
+  canvasParent: {fileID: 0}
+  _spawnedInstance: {fileID: 0}
+  endPosistion: {x: 0, y: 0, z: 0}
 --- !u!114 &3870669884237245648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2129,10 +2235,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 21.717307692680222
+    m_Start: 23.683333333333334
     m_ClipIn: 0
-    m_Asset: {fileID: 5749338433774750936}
-    m_Duration: 8.389102564475095
+    m_Asset: {fileID: 3794325723403286614}
+    m_Duration: 12.923076923076927
     m_TimeScale: 1
     m_ParentTrack: {fileID: 3909027026270616038}
     m_EaseInDuration: 0
@@ -2196,7 +2302,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: NewSlideDefination
+    m_DisplayName: SlideNote
   m_Markers:
     m_Objects: []
   canvasParent: {fileID: 0}
@@ -2462,24 +2568,6 @@ MonoBehaviour:
   clipEndTime: 3.1
   defination: {fileID: 11400000, guid: 43147e9b6ac2afb4d999e0c648075e77, type: 2}
   spawnPosition: {x: 0, y: 0, z: 0}
-  canvasParent: {fileID: 0}
-  _spawnedInstance: {fileID: 0}
---- !u!114 &5749338433774750936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65c4cffd19e66a4988e8fdc58fdd86a, type: 3}
-  m_Name: RhythmClip
-  m_EditorClassIdentifier: 
-  clipStartTime: 21.717307692680222
-  clipEndTime: 30.106410257155318
-  defination: {fileID: 11400000, guid: 4496d71a6b60acb4682aa0c5f4f928ef, type: 2}
-  spawnPosition: {x: 0, y: 200, z: 0}
   canvasParent: {fileID: 0}
   _spawnedInstance: {fileID: 0}
 --- !u!114 &5792576036400990445

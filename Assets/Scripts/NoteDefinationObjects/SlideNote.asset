@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4209982530220668858, guid: e92a23c3ffad59742b89abd283eacf12, type: 3}
   type: 1
-  duration: 3
+  duration: 2.5
   isLocked: 0
+  leftIcon: {fileID: 2800000, guid: 1c2a21dca3102544c951ed4850267cb9, type: 3}
+  centerIcon: {fileID: 0}
+  rightIcon: {fileID: 0}
+  bgColor: {r: 0.7363066, g: 0, b: 0.8867924, a: 1}

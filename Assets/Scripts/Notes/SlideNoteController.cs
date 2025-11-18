@@ -3,8 +3,10 @@ using UnityEngine.EventSystems;
 
 public class SlideNoteController : BaseNote
 {
-
-    private bool isMoving;
+    public bool isMoving { private set; get; }
+    [SerializeField] private Transform endPosition;
+    [SerializeField] private Transform holderPosition;
+    
     
     public override void OnPointerDown(PointerEventData eventData)
     {
@@ -32,5 +34,15 @@ public class SlideNoteController : BaseNote
     private void StartMoving()
     {
         isMoving = true;
+    }
+
+    public void MoveToEndPosition(float t)
+    {
+        holderPosition.position = Vector3.Lerp(transform.position, endPosition.position, t);
+    }
+
+    private void Arrived()
+    {
+        base.Success();
     }
 }

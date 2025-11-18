@@ -14,12 +14,12 @@ public class RhythmClip : PlayableAsset, ITimelineClipAsset
     [HideInInspector]
     public double clipEndTime;
 
-    [SerializeField] private NoteDefination defination;
+    [SerializeField] protected NoteDefination defination;
     [Header("Settings")]
     //[SerializeField] private double spawnTime;
-    [SerializeField] private Vector3 spawnPosition;
+    [SerializeField] protected Vector3 spawnPosition;
 
-    private RhythmBehaviour template = new();
+    protected RhythmBehaviour template = new();
     public double FixedDuration => defination.duration;
     public bool isLockedDuration => defination.isLocked;
 
