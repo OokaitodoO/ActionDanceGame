@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Playables;
@@ -7,8 +8,7 @@ using UnityEngine.UI;
 public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     [Header("Out line")]
-    [SerializeField] private Transform outLine;
-    [SerializeField] private float speedScaling;
+    [SerializeField] private Transform outLine;    
     [SerializeField] private Vector2 StartScale;
     [SerializeField] private Vector2 EndScale;
 
@@ -17,6 +17,7 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public AccuracyType accuracy;
     public double hitTime;
+    protected NoteAccuracyConfig _accuracyConfig = new();
 
     protected event Action<BaseNote> OnTap;
     protected event Action<BaseNote> OnSuccess;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-public enum DirecitonConfig
+public enum DirectionConfig
 {
     Up,
     Right,

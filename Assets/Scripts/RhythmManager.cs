@@ -11,15 +11,25 @@ public class RhythmManager : MonoBehaviour
     [SerializeField] private Transform canvasParent;
     [Space]
     [SerializeField] private RhythmUI rhythmUI;
+    [SerializeField] private GameObject gameplayPanel;
+    [SerializeField] private GameObject startBtn;
+    [SerializeField] private GameObject summaryPanel;
 
     private Queue<BaseNote> _queueNotes = new();
     private List<BaseNote> _notes = new();
 
     private NoteAccuracyConfig _accuracyConfig = new();
     private ComboConfig _comboConfig = new();
+    private GradeConfig _gradeConfig = new();
 
     private int _currentCombo;
-    private int _currentScore;    
+    private int _currentScore;
+
+    private int perfect;
+    private int good;
+    private int bad;
+    private int miss;
+    private int h_combo;
 
     private void OnValidate()
     {
@@ -32,29 +42,42 @@ public class RhythmManager : MonoBehaviour
         Initialize();        
     }
 
-    /*    public void AddNoteList(BaseNote note)
-        {
-            _notes.Add(note);
-        }
-
-        public void RemoveNoteList(BaseNote note)
-        {
-            _notes.Remove(note);
-        }*/
-
     #region GameState
     public void Initialize()
     {
         ResetCombo();
         ResetSocre();
+        ResetStatisic();
         InitTrack();
 
         director.playOnAwake = false;
+        director.stopped += EndGame;
     }
 
     public void StartGame()
     {
+        //Reset variable
+        ResetCombo();
+        ResetSocre();
+
         director.Play();
+    }
+
+    public void EndGame(PlayableDirector director)
+    {
+        //Reset director
+        director.Stop();
+        director.time = 0;        
+
+        //Enable sum panel
+        gameplayPanel.SetActive(false);
+        summaryPanel.SetActive(true);
+
+        //Update summaray
+        Debug.Log($"{perfect}, {good}, {bad}, {miss}, {h_combo}, {_currentScore}");
+        rhythmUI.UpdateStatisticAcc(perfect, good, bad, miss, h_combo, _currentScore);
+        var grade = _gradeConfig.CalculateGrade(_currentScore);
+        rhythmUI.UpdateGrade(grade);        
     }
     #endregion
 
@@ -120,8 +143,7 @@ public class RhythmManager : MonoBehaviour
     {                
         //Set accuracy
         DeQueue();
-        SetNoteToFront();
-        note.accuracy = _accuracyConfig.CalculateAccuracy(director.time, note.hitTime);
+        SetNoteToFront();       
         AddSocre(note.accuracy);
         rhythmUI.UpdateAccuracy(note.accuracy);
 
@@ -133,7 +155,9 @@ public class RhythmManager : MonoBehaviour
         DeQueue();
         SetNoteToFront();
         ResetCombo();
-        rhythmUI.UpdateAccuracy(note.accuracy);        
+        rhythmUI.UpdateAccuracy(note.accuracy);   
+        
+        Destroy(note.gameObject);
     }
 
     private void SetNoteToFront()
@@ -158,6 +182,15 @@ public class RhythmManager : MonoBehaviour
         rhythmUI.UpdateScore(_currentCombo);
     }
 
+    private void ResetStatisic()
+    {
+        perfect = 0;
+        good = 0;
+        bad = 0;
+        miss = 0;
+        h_combo = 0;
+    }
+
     private void AddSocre(AccuracyType accuracy)
     {
         if (accuracy == AccuracyType.Miss)
@@ -167,9 +200,12 @@ public class RhythmManager : MonoBehaviour
         else
         {
             AddCombo();
+            h_combo = _currentCombo > h_combo ? _currentCombo : h_combo;
         }
+
         //score += combo multiplier * accuracy point
         _currentScore += Mathf.CeilToInt(_comboConfig.GetMultiplier(_currentCombo) * _accuracyConfig.GetScoreByAccuracyType(accuracy));
+        CountStatistic(accuracy);
         rhythmUI.UpdateScore(_currentScore);
     }
 
@@ -177,5 +213,24 @@ public class RhythmManager : MonoBehaviour
     {
         _currentCombo++;
         rhythmUI.UpdateCombo(_currentCombo);
-    }
+    }   
+    
+    private void CountStatistic(AccuracyType accuracy)
+    {
+        switch (accuracy)
+        {
+            case AccuracyType.Perfect:
+                perfect++;
+                break;
+            case AccuracyType.Good:
+                good++;
+                break;
+            case AccuracyType.Bad:
+                bad++;
+                break;
+            case AccuracyType.Miss:
+                miss++;
+                break;
+        }
+    }    
 }

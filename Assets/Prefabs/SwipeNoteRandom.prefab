@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 919792614172918455}
   - component: {fileID: 1798495272641988918}
   m_Layer: 0
-  m_Name: SwipeNote
+  m_Name: SwipeNoteRandom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,8 +177,8 @@ RectTransform:
   m_GameObject: {fileID: 4209982530220668858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 342337917204649909}
   - {fileID: 1745475937509529201}
@@ -210,13 +210,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outLine: {fileID: 1745475937509529201}
-  speedScaling: 0
   StartScale: {x: 3.5, y: 3.5}
   EndScale: {x: 1.5, y: 1.5}
   accuracy: 3
   hitTime: 0
-  directionSprite: {fileID: 1379816094965975398}
-  arrow: {fileID: 0}
+  directionImage: {fileID: 1379816094965975398}
+  direction: 0
+  isRandom: 1
   inputDirection: 0
 --- !u!1 &6637896247989312957
 GameObject:

@@ -25,7 +25,6 @@ public class RhythmClip : PlayableAsset, ITimelineClipAsset
 
     [HideInInspector]
     public Transform canvasParent;
-
     [HideInInspector]
     public GameObject _spawnedInstance;
 
