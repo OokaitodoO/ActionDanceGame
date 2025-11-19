@@ -36,12 +36,17 @@ public class SlideNoteController : BaseNote
 
     private void StartMoving()
     {
+        //Start moving
         isMoving = true;
+        //Set start time
+
     }
 
     public void MoveToEndPosition(double localTime)
     {
         //float T_norm = Mathf.Clamp01((float)localTime / (float)offsetHitTime);
+        //startTime = 
+        //var startTime = localTime -
         float T_norm = Mathf.Clamp01((float)localTime / (float)clipLength);
         holderPosition.position = Vector3.Lerp(startPosition.position, endPosition.position, 0f);
     }

@@ -49,7 +49,7 @@ public class SlideBehaviour : RhythmBehaviour
                 }
             }            
             //Movig this note to end position
-            _currentNote.MoveToEndPosition();
+            _currentNote.MoveToEndPosition(playable.GetTime());
         }
     }
 }
