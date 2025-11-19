@@ -38,23 +38,23 @@ public class NoteAccuracyConfig
         if (currentTime <= hitTime + PerfectOffset 
             && currentTime >= hitTime - PerfectOffset)
         {
-            Debug.Log("Perfect");
+            //Debug.Log("Perfect");
             return AccuracyType.Perfect;
         }
         else if (currentTime <= (hitTime + GoodOffset) 
                 && currentTime >= (hitTime - GoodOffset))
         {
-            Debug.Log("Good");
+            //Debug.Log("Good");
             return AccuracyType.Good;
         }
         else if (currentTime <= (hitTime + BadOffset) 
                 && currentTime >= (hitTime - BadOffset))
         {
-            Debug.Log("Bad");
+            //Debug.Log("Bad");
             return AccuracyType.Bad;
         }
 
-        Debug.Log("Miss");
+        //Debug.Log("Miss");
         return AccuracyType.Miss;
     }    
 }

@@ -14,10 +14,10 @@ public class SlideClip : RhythmClip
         slideTemplate.prefabToSpawn = defination.GetPrefab();
         slideTemplate.tapDuration = defination.duration;
         slideTemplate.spawnLocation = spawnPosition;
+        slideTemplate.endPosition = endPosistion;
         slideTemplate.canvasParent = canvasParent;
         slideTemplate.clipStartTime = clipStartTime;
         slideTemplate.clipEndTime = clipEndTime;
-        slideTemplate.clipLength = duration;
 
         return ScriptPlayable<SlideBehaviour>.Create(graph, slideTemplate);
     }

@@ -8,11 +8,12 @@ using UnityEngine.UI;
 public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     [Header("Out line")]
-    [SerializeField] private Transform outLine;    
+    [SerializeField] protected Transform outLine;    
     [SerializeField] private Vector2 StartScale;
     [SerializeField] private Vector2 EndScale;
 
-    protected PlayableDirector director;    
+    protected PlayableDirector director; 
+    protected Canvas canvas;
     protected Button button;
 
     public AccuracyType accuracy;
@@ -37,6 +38,11 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     public void SetOnMissListener(Action<BaseNote> onMiss)
     {
         OnMiss = onMiss;
+    }
+
+    public void SetCanvas(Canvas canvas)
+    {
+        this.canvas = canvas;
     }
 
     public virtual void SetDirectorNController(PlayableDirector director, RhythmManager controller)

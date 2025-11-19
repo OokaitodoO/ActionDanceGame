@@ -1,54 +1,135 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SlideNoteController : BaseNote
 {
-    public bool isMoving { private set; get; }
+    public bool isMoving;
     public double clipLength;
+    public double startMovingTime;
 
-    [SerializeField] private Transform startPosition;
-    [SerializeField] private Transform endPosition;
+    public event Action<SlideNoteController> OnTapStartMoving;
+
+    [SerializeField] private Transform startTransform;
+    [SerializeField] private Transform endTransform;
     [SerializeField] private Transform holderPosition;
+
+    private GraphicRaycaster _raycaster;
+    private bool _isOverTarget;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        _raycaster = canvas.GetComponent<GraphicRaycaster>();
+    }
     
-    
+    public void SetListenerMoving(Action<SlideNoteController> action)
+    {
+        OnTapStartMoving = action;
+    }
+
     public override void OnPointerDown(PointerEventData eventData)
     {
         //Get accuracy but not yet success
         accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
         //Start moving to end point
-        StartMoving();
+        StartMoving();        
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
-        //Tracking
-        //Check if its arrived end point
+        Debug.Log($"On drag");
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        _raycaster.Raycast(eventData, results);
+
+        bool currentlyOverTarget = false;
+
+        foreach (RaycastResult result in results)
+        {            
+            if (result.gameObject == holderPosition.gameObject)
+            {
+                currentlyOverTarget = true;
+                break;
+            }
+        }        
+
+        if (currentlyOverTarget && !_isOverTarget)
+        {            
+            //Debug.Log("Pointer ENTERED Target Object while dragging!");            
+        }
+        else if (!currentlyOverTarget && _isOverTarget)
+        {
+            //Debug.Log("Pointer EXITED Target Object while dragging!");
+            isMoving = false;
+
+            base.Missed();
+        }
+        
+        _isOverTarget = currentlyOverTarget;
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
         //If release while note moving will miss this note
         if (isMoving)
-        {
-            Destroy(gameObject);
+        {            
+            base.Missed();
         }
+    }
+
+    public Transform GetStartTransform()
+    {
+        return startTransform;
+    }
+
+    public Transform GetEndTransform()
+    {
+        return endTransform;
+    }
+
+    public Transform GetHolderTransform()
+    {
+        return holderPosition.transform;
     }
 
     private void StartMoving()
     {
         //Start moving
-        isMoving = true;
-        //Set start time
+        OnTapStartMoving?.Invoke(this);
 
+        isMoving = true;
+        outLine.gameObject.SetActive(false);
+        holderPosition.gameObject.SetActive(true);
     }
 
     public void MoveToEndPosition(double localTime)
     {
-        //float T_norm = Mathf.Clamp01((float)localTime / (float)offsetHitTime);
-        //startTime = 
-        //var startTime = localTime -
-        float T_norm = Mathf.Clamp01((float)localTime / (float)clipLength);
-        holderPosition.position = Vector3.Lerp(startPosition.position, endPosition.position, 0f);
+        if (isMoving)
+        {
+            float T_norm = Mathf.Clamp01(((float)localTime - (float)startMovingTime) / ((float)clipLength - (float)startMovingTime));
+            holderPosition.position = Vector3.Lerp(startTransform.position, endTransform.position, T_norm);
+            if (Vector3.Distance(holderPosition.position, endTransform.position) <= 0.1f)
+            {
+                Arrived();
+            }
+        }       
+    }
+
+    public void MoveToEndPositionPreview(double localTime)
+    {
+        if (isMoving)
+        {
+            Debug.Log($"Moving");
+            float T_norm = Mathf.Clamp01(((float)localTime - (float)startMovingTime) / ((float)clipLength - (float)startMovingTime));       
+            holderPosition.position = Vector3.Lerp(startTransform.position, endTransform.position, T_norm);
+            if (Vector3.Distance(holderPosition.position, endTransform.position) <= 0.1f)
+            {
+                //Arrived();
+            }
+        }
     }
 
     private void Arrived()

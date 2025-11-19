@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
@@ -8,7 +9,8 @@ using UnityEngine.UI;
 public class RhythmManager : MonoBehaviour
 {
     [SerializeField] private PlayableDirector director;
-    [SerializeField] private Transform canvasParent;
+    [SerializeField] private Transform noteParent;
+    [SerializeField] private Canvas canvas;
     [Space]
     [SerializeField] private RhythmUI rhythmUI;
     [SerializeField] private GameObject gameplayPanel;
@@ -74,7 +76,7 @@ public class RhythmManager : MonoBehaviour
         summaryPanel.SetActive(true);
 
         //Update summaray
-        Debug.Log($"{perfect}, {good}, {bad}, {miss}, {h_combo}, {_currentScore}");
+        //Debug.Log($"{perfect}, {good}, {bad}, {miss}, {h_combo}, {_currentScore}");
         rhythmUI.UpdateStatisticAcc(perfect, good, bad, miss, h_combo, _currentScore);
         var grade = _gradeConfig.CalculateGrade(_currentScore);
         rhythmUI.UpdateGrade(grade);        
@@ -82,12 +84,12 @@ public class RhythmManager : MonoBehaviour
     #endregion
 
     public void AddQueue(BaseNote note)
-    {
-        Debug.Log("Add queue");
+    {        
         //Add queue
         _queueNotes.Enqueue(note);
         //Init note
         note.SetDirectorNController(director, this);
+        note.SetCanvas(canvas);
         note.Initialize();
         note.SetOnTapListener(OnTapNote);
         note.SetOnSuccessListener(OnSuccessNote);
@@ -100,7 +102,7 @@ public class RhythmManager : MonoBehaviour
         //Remove queue
         if (_queueNotes.Count > 0)
         {
-            Debug.Log("Dequeue note");
+            //Debug.Log("Dequeue note");
             _queueNotes.Dequeue();
         }
     }    
@@ -113,12 +115,11 @@ public class RhythmManager : MonoBehaviour
             foreach (var track in timeLineAsset.GetRootTracks())
             {
                 if (track is RhythmTrack)
-                {
-                    Debug.Log($"Track: {track.name}");
+                {                    
                     var rhythm = track as RhythmTrack;
                     if (rhythm)
                     {
-                        rhythm.canvasParent = canvasParent;
+                        rhythm.canvasParent = noteParent;
                     }
                 }
             }
@@ -154,10 +155,18 @@ public class RhythmManager : MonoBehaviour
     {
         DeQueue();
         SetNoteToFront();
-        ResetCombo();
-        rhythmUI.UpdateAccuracy(note.accuracy);   
-        
-        Destroy(note.gameObject);
+        ResetCombo();        
+        rhythmUI.UpdateAccuracy(AccuracyType.Miss);        
+        CountStatistic(AccuracyType.Miss);
+
+        if (!Application.isPlaying)
+        {
+            DestroyImmediate(note.gameObject);
+        }
+        else
+        {
+            Destroy(note.gameObject);
+        }        
     }
 
     private void SetNoteToFront()

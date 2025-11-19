@@ -40,12 +40,12 @@ public class RhythmBehaviour : PlayableBehaviour
 
     public override void OnBehaviourPause(Playable playable, FrameData info)
     {
-        DestroyNoteByBehaviour(spawnedInstance);
+        DestroyNoteByBehaviour(spawnedInstance, currentNote);
     }
 
     public override void OnGraphStop(Playable playable)
     {
-        DestroyNoteByBehaviour(spawnedInstance);
+        DestroyNoteByBehaviour(spawnedInstance, currentNote);
     }
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
@@ -57,20 +57,20 @@ public class RhythmBehaviour : PlayableBehaviour
         }
     }
 
-    public void DestroyNoteByBehaviour(GameObject obj)
+    protected virtual void DestroyNoteByBehaviour(GameObject obj, BaseNote currentNote)
     {
         if (spawnedInstance != null && spawnedInstance == obj)
         {
             if (!Application.isPlaying)
             {
-                Object.DestroyImmediate(spawnedInstance);
                 controller.DeQueue();
+                Object.DestroyImmediate(spawnedInstance);
             }
             else
             {                
-                Object.Destroy(spawnedInstance);
-                controller.DeQueue();
+                //controller.DeQueue();
                 currentNote.Missed();
+                //Object.Destroy(spawnedInstance);
             }
 
             currentNote = null;

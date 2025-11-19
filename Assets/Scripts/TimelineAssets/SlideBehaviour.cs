@@ -1,55 +1,103 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
+using Object = UnityEngine.Object;
 
 public class SlideBehaviour : RhythmBehaviour
 {
+    public Vector3 endPosition;
     public double tapDuration;
     public double clipLength;
 
     private double missTime;
-    private SlideNoteController _currentNote;
+    private SlideNoteController _slideNote;
+    private double startMovingTime;
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
         if (spawnedInstance == null && prefabToSpawn != null)
         {
             //Give this game object to who needed to use
-            spawnedInstance = Object.Instantiate(prefabToSpawn, canvasParent);
-            //Set note position
-            var rect = spawnedInstance.GetComponent<RectTransform>();
-            if (rect)
-                rect.localPosition = spawnLocation;
-            //Set end position
-
-            spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
+            spawnedInstance = Object.Instantiate(prefabToSpawn, canvasParent);            
 
             //Send base note to controller
             var director = playable.GetGraph().GetResolver() as PlayableDirector;
             controller = director.GetComponent<RhythmManager>();
-            _currentNote = spawnedInstance.GetComponent<BaseNote>() as SlideNoteController;
+            _slideNote = spawnedInstance.GetComponent<BaseNote>() as SlideNoteController;
             offsetHitTime = tapDuration / 2;            
-            _currentNote.hitTime = clipStartTime + offsetHitTime;
-            _currentNote.clipLength = clipLength;
+            _slideNote.hitTime = clipStartTime + offsetHitTime;
+            _slideNote.clipLength = clipEndTime - clipStartTime;
+            _slideNote.SetListenerMoving(OnTapStartMovingHolder);
 
-            controller.AddQueue(_currentNote);
+            //Set note position
+            var rectStart = _slideNote.GetStartTransform();
+            if (rectStart)
+                rectStart.localPosition = spawnLocation;
+            //Set end position
+            var rectEnd = _slideNote.GetEndTransform();
+            if (rectStart)
+                rectEnd.localPosition = endPosition;
+
+            spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
+
+            controller.AddQueue(_slideNote);
         }
+    }
+
+    public override void OnBehaviourPause(Playable playable, FrameData info)
+    {
+        base.OnBehaviourPause(playable, info);        
+    }
+
+    public override void OnGraphStop(Playable playable)
+    {
+        base.OnGraphStop(playable);        
     }
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
-        if (_currentNote)
+        var localTime = playable.GetTime();
+        if (_slideNote)
         {
-            if (!_currentNote.isMoving)
+            if (!_slideNote.isMoving)
             {
-                var localTime = playable.GetTime();
-                _currentNote.UpdateOutline(offsetHitTime, clipStartTime, localTime);
+                Debug.Log("not moving");
+                startMovingTime = localTime;
+                _slideNote.UpdateOutline(offsetHitTime, clipStartTime, localTime);
                 if (localTime >= tapDuration)
                 {
-                    DestroyNoteByBehaviour(spawnedInstance);
+                    Debug.Log("Past tap time");
+                    if (!Application.isPlaying)
+                    {
+                        _slideNote.isMoving = true;
+                    }
+                    else
+                    {
+                        DestroyNoteByBehaviour(spawnedInstance, _slideNote);
+                        _slideNote = null;
+                    }                    
                 }
-            }            
-            //Movig this note to end position
-            _currentNote.MoveToEndPosition(playable.GetTime());
+            }
+            else
+            {
+                //Movig this note to end position
+                if (!Application.isPlaying)
+                {
+                    _slideNote.startMovingTime = startMovingTime;
+                    _slideNote.GetHolderTransform().gameObject.SetActive(true);
+                    _slideNote.MoveToEndPositionPreview(localTime);
+                }
+                else
+                {
+                    _slideNote.MoveToEndPosition(localTime);
+                }
+            }                       
         }
+    }
+
+    private void OnTapStartMovingHolder(SlideNoteController slide)
+    {
+        slide.startMovingTime = startMovingTime;
     }
 }
