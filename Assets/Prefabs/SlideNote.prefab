@@ -140,6 +140,7 @@ MonoBehaviour:
   accuracy: 3
   hitTime: 0
   interacable: 0
+  startPosition: {fileID: 5765592388154848189}
   endPosition: {fileID: 5565558994183640453}
   holderPosition: {fileID: 9098846993187337884}
 --- !u!1 &4333469549541212080

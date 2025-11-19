@@ -17,6 +17,7 @@ public class SlideClip : RhythmClip
         slideTemplate.canvasParent = canvasParent;
         slideTemplate.clipStartTime = clipStartTime;
         slideTemplate.clipEndTime = clipEndTime;
+        slideTemplate.clipLength = duration;
 
         return ScriptPlayable<SlideBehaviour>.Create(graph, slideTemplate);
     }

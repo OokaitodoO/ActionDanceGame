@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 public class SlideNoteController : BaseNote
 {
     public bool isMoving { private set; get; }
+    public double clipLength;
+
+    [SerializeField] private Transform startPosition;
     [SerializeField] private Transform endPosition;
     [SerializeField] private Transform holderPosition;
     
@@ -36,9 +39,11 @@ public class SlideNoteController : BaseNote
         isMoving = true;
     }
 
-    public void MoveToEndPosition(float t)
+    public void MoveToEndPosition(double localTime)
     {
-        holderPosition.position = Vector3.Lerp(transform.position, endPosition.position, t);
+        //float T_norm = Mathf.Clamp01((float)localTime / (float)offsetHitTime);
+        float T_norm = Mathf.Clamp01((float)localTime / (float)clipLength);
+        holderPosition.position = Vector3.Lerp(startPosition.position, endPosition.position, 0f);
     }
 
     private void Arrived()

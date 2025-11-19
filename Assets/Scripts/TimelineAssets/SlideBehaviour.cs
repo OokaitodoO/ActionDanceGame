@@ -4,6 +4,7 @@ using UnityEngine.Playables;
 public class SlideBehaviour : RhythmBehaviour
 {
     public double tapDuration;
+    public double clipLength;
 
     private double missTime;
     private SlideNoteController _currentNote;
@@ -28,6 +29,7 @@ public class SlideBehaviour : RhythmBehaviour
             _currentNote = spawnedInstance.GetComponent<BaseNote>() as SlideNoteController;
             offsetHitTime = tapDuration / 2;            
             _currentNote.hitTime = clipStartTime + offsetHitTime;
+            _currentNote.clipLength = clipLength;
 
             controller.AddQueue(_currentNote);
         }
@@ -45,11 +47,9 @@ public class SlideBehaviour : RhythmBehaviour
                 {
                     DestroyNoteByBehaviour(spawnedInstance);
                 }
-            }
-
-            float t = 0.5f;
+            }            
             //Movig this note to end position
-            _currentNote.MoveToEndPosition(t);
+            _currentNote.MoveToEndPosition();
         }
     }
 }

@@ -12,7 +12,11 @@ public enum AccuracyType
 
 public class NoteAccuracyConfig
 {
-    private const float hitOffset = 0.25f;    
+    private const float hitOffset = 0.25f;
+
+    private double PerfectOffset = hitOffset;
+    private double GoodOffset = hitOffset * 1.5f;
+    private double BadOffset = hitOffset * 2f;
 
     public int GetScoreByAccuracyType(AccuracyType accuracy)
     {
@@ -30,21 +34,21 @@ public class NoteAccuracyConfig
     }
 
     public AccuracyType CalculateAccuracy(double currentTime, double hitTime)
-    {
-        if (currentTime <= hitTime + hitOffset 
-            && currentTime >= hitTime - hitOffset)
+    {        
+        if (currentTime <= hitTime + PerfectOffset 
+            && currentTime >= hitTime - PerfectOffset)
         {
             Debug.Log("Perfect");
             return AccuracyType.Perfect;
         }
-        else if (currentTime <= (hitTime + hitOffset * 1.5f) 
-                && currentTime >= (hitTime - hitOffset * 1.5f))
+        else if (currentTime <= (hitTime + GoodOffset) 
+                && currentTime >= (hitTime - GoodOffset))
         {
             Debug.Log("Good");
             return AccuracyType.Good;
         }
-        else if (currentTime <= (hitTime + hitOffset * 2f) 
-                && currentTime >= (hitTime - hitOffset * 2f))
+        else if (currentTime <= (hitTime + BadOffset) 
+                && currentTime >= (hitTime - BadOffset))
         {
             Debug.Log("Bad");
             return AccuracyType.Bad;
@@ -52,5 +56,5 @@ public class NoteAccuracyConfig
 
         Debug.Log("Miss");
         return AccuracyType.Miss;
-    }
+    }    
 }
