@@ -32,10 +32,14 @@ public class SlideNoteController : BaseNote
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        //Get accuracy but not yet success
-        accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
-        //Start moving to end point
-        StartMoving();        
+        if (interacable)
+        {
+            //Get accuracy but not yet success
+            accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
+            //Start moving to end point
+            StartMoving();
+
+        }
     }
 
     public override void OnDrag(PointerEventData eventData)

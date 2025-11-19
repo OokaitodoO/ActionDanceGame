@@ -35,7 +35,7 @@ public class TempoTrack : TrackAsset
 
     public void DeleteAllClip()
     {
-        //Check exist track delete all and generate
+        //Check exist track delete all
         var clips = GetClips();
         if (clips.Count() > 0)
         {
