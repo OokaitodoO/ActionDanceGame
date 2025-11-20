@@ -68,19 +68,22 @@ public class SlideBehaviour : RhythmBehaviour
                 if (localTime >= tapDuration)
                 {
                     Debug.Log("Past tap time");
+                    //For stand alone
                     if (!Application.isPlaying)
                     {
                         _slideNote.isMoving = true;
                     }
                     else
                     {
-                        DestroyNoteByBehaviour(spawnedInstance, _slideNote);
+                        _slideNote.Missed();
+                        //DestroyNoteByBehaviour(spawnedInstance, _slideNote);
                         _slideNote = null;
                     }                    
                 }
             }
             else
             {
+                //For stand alone
                 //Movig this note to end position
                 if (!Application.isPlaying)
                 {

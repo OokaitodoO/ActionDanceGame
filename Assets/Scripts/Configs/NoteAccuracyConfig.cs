@@ -14,9 +14,11 @@ public class NoteAccuracyConfig
 {
     private const float hitOffset = 0.25f;
 
-    private double PerfectOffset = hitOffset;
-    private double GoodOffset = hitOffset * 1.5f;
-    private double BadOffset = hitOffset * 2f;
+    public double PerfectOffset => hitOffset;
+    public double GoodOffset => hitOffset * 1.5f;
+    public double BadOffset => hitOffset * 2f;
+
+
 
     public int GetScoreByAccuracyType(AccuracyType accuracy)
     {

@@ -12,9 +12,13 @@ public class RhythmBehaviour : PlayableBehaviour
     public double clipEndTime;
     public double offsetHitTime;
 
+    protected double noteLength;
+
     protected GameObject spawnedInstance;
     protected BaseNote currentNote;
     protected RhythmManager controller;
+
+    protected NoteAccuracyConfig AccConfig = new();
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
@@ -33,7 +37,8 @@ public class RhythmBehaviour : PlayableBehaviour
             currentNote = spawnedInstance.GetComponent<BaseNote>();
             offsetHitTime = (clipEndTime - clipStartTime) / 2;
             currentNote.hitTime = clipStartTime + offsetHitTime;
-            
+            noteLength = currentNote.hitTime + AccConfig.PerfectOffset;
+
             controller.AddQueue(currentNote);
         }
     }
@@ -54,6 +59,11 @@ public class RhythmBehaviour : PlayableBehaviour
         {
             var localTime = playable.GetTime();           
             currentNote.UpdateOutline(offsetHitTime, clipStartTime, localTime);
+            //If past bad acc call miss function            
+            if (localTime >= noteLength)
+            {
+                currentNote.Missed();
+            }
         }
     }
 
