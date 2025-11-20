@@ -119,7 +119,7 @@ public class SlideNoteController : BaseNote
         {
             float T_norm = Mathf.Clamp01(((float)localTime - (float)startMovingTime) / ((float)clipLength - (float)startMovingTime));
             holderTransform.position = Vector3.Lerp(startTransform.position, endTransform.position, T_norm);
-            if (Vector3.Distance(holderTransform.position, endTransform.position) <= 0.1f)
+            if (Vector3.Distance(holderTransform.position, endTransform.position) <= 0.5f)
             {
                 Arrived();
             }

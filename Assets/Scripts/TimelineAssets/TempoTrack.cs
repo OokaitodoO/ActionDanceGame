@@ -1,4 +1,3 @@
-using UnityEditor.Timeline;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Playables;
