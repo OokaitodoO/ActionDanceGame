@@ -14,7 +14,9 @@ public class SlideNoteController : BaseNote
 
     [SerializeField] private Transform startTransform;
     [SerializeField] private Transform endTransform;
-    [SerializeField] private Transform holderPosition;
+    [SerializeField] private Transform holderTransform;
+    [SerializeField] private Transform arrowTransform;
+    [SerializeField] private NoteConnectionLine line;
 
     private GraphicRaycaster _raycaster;
     private bool _isOverTarget;
@@ -23,6 +25,8 @@ public class SlideNoteController : BaseNote
     {
         base.Initialize();
         _raycaster = canvas.GetComponent<GraphicRaycaster>();
+        line.SetConnectionLine();
+        SetArrowRotation();
     }
     
     public void SetListenerMoving(Action<SlideNoteController> action)
@@ -53,7 +57,7 @@ public class SlideNoteController : BaseNote
 
         foreach (RaycastResult result in results)
         {            
-            if (result.gameObject == holderPosition.gameObject)
+            if (result.gameObject == holderTransform.gameObject)
             {
                 currentlyOverTarget = true;
                 break;
@@ -96,7 +100,7 @@ public class SlideNoteController : BaseNote
 
     public Transform GetHolderTransform()
     {
-        return holderPosition.transform;
+        return holderTransform.transform;
     }
 
     private void StartMoving()
@@ -106,7 +110,7 @@ public class SlideNoteController : BaseNote
 
         isMoving = true;
         outLine.gameObject.SetActive(false);
-        holderPosition.gameObject.SetActive(true);
+        holderTransform.gameObject.SetActive(true);
     }
 
     public void MoveToEndPosition(double localTime)
@@ -114,8 +118,8 @@ public class SlideNoteController : BaseNote
         if (isMoving)
         {
             float T_norm = Mathf.Clamp01(((float)localTime - (float)startMovingTime) / ((float)clipLength - (float)startMovingTime));
-            holderPosition.position = Vector3.Lerp(startTransform.position, endTransform.position, T_norm);
-            if (Vector3.Distance(holderPosition.position, endTransform.position) <= 0.1f)
+            holderTransform.position = Vector3.Lerp(startTransform.position, endTransform.position, T_norm);
+            if (Vector3.Distance(holderTransform.position, endTransform.position) <= 0.1f)
             {
                 Arrived();
             }
@@ -128,8 +132,8 @@ public class SlideNoteController : BaseNote
         {
             Debug.Log($"Moving");
             float T_norm = Mathf.Clamp01(((float)localTime - (float)startMovingTime) / ((float)clipLength - (float)startMovingTime));       
-            holderPosition.position = Vector3.Lerp(startTransform.position, endTransform.position, T_norm);
-            if (Vector3.Distance(holderPosition.position, endTransform.position) <= 0.1f)
+            holderTransform.position = Vector3.Lerp(startTransform.position, endTransform.position, T_norm);
+            if (Vector3.Distance(holderTransform.position, endTransform.position) <= 0.1f)
             {
                 //Arrived();
             }
@@ -139,5 +143,16 @@ public class SlideNoteController : BaseNote
     private void Arrived()
     {
         base.Success();
+    }
+
+    private void SetArrowRotation()
+    {
+        //Find drection
+        var direction = endTransform.position - startTransform.position;
+        //Find angle
+        var angle = MathF.Atan2(direction.y, direction.x);
+        var angleDegrees = angle * Mathf.Rad2Deg;
+        //Set rotation
+        arrowTransform.rotation = Quaternion.Euler(0, 0, angleDegrees - 90);
     }
 }
