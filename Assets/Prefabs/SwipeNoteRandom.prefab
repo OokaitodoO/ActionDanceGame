@@ -214,6 +214,7 @@ MonoBehaviour:
   EndScale: {x: 1.5, y: 1.5}
   accuracy: 3
   hitTime: 0
+  interacable: 0
   directionImage: {fileID: 1379816094965975398}
   direction: 0
   isRandom: 1
