@@ -9,13 +9,13 @@ using UnityEngine.Rendering;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
-public class RhythmManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayableDirector director;
     [SerializeField] private Transform noteParent;
     [SerializeField] private Canvas canvas;
     [Space]
-    [SerializeField] private RhythmUI rhythmUI;
+    [SerializeField] private UIManager rhythmUI;
     [SerializeField] private GameObject gameplayPanel;
     [SerializeField] private GameObject startBtn;
     [SerializeField] private GameObject summaryPanel;
@@ -92,28 +92,24 @@ public class RhythmManager : MonoBehaviour
     }
 
     public void AddQueue(BaseNote note)
-    {        
-        //Add queue
+    {                
         _queueNotes.Enqueue(note);
-        //Init note
+        
         note.SetDirectorNController(director, this);
         note.SetCanvas(canvas);
         note.Initialize();
+
         note.SetOnTapListener(OnTapNote);
         note.SetOnSuccessListener(OnSuccessNote);
         note.SetOnMissListener(OnMissNote);
         note.SetOnCheckListener(OnCheckCurrentNote);
+
         SetNoteToFront();
     }
 
     public void DeQueue()
     {
-        //Remove queue
-        if (_queueNotes.Count > 0)
-        {
-            //Debug.Log("Dequeue note");
-            _queueNotes.Dequeue();
-        }
+        _queueNotes.TryDequeue(out var note);
     }    
 
     public void InitTrack()

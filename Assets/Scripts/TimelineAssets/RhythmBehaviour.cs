@@ -16,7 +16,7 @@ public class RhythmBehaviour : PlayableBehaviour
 
     protected GameObject spawnedInstance;
     protected BaseNote currentNote;
-    protected RhythmManager controller;
+    protected GameManager controller;
 
     protected NoteAccuracyConfig AccConfig = new();
 
@@ -32,7 +32,7 @@ public class RhythmBehaviour : PlayableBehaviour
 
             //Send base note to controller
             var director = playable.GetGraph().GetResolver() as PlayableDirector;
-            controller = director.GetComponent<RhythmManager>();
+            controller = director.GetComponent<GameManager>();
             currentNote = spawnedInstance.GetComponent<BaseNote>();
             offsetHitTime = (clipEndTime - clipStartTime) / 2;
             currentNote.hitTime = clipStartTime + offsetHitTime;

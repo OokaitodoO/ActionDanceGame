@@ -23,7 +23,7 @@ public class SlideBehaviour : RhythmBehaviour
 
             //Send base note to controller
             var director = playable.GetGraph().GetResolver() as PlayableDirector;
-            controller = director.GetComponent<RhythmManager>();
+            controller = director.GetComponent<GameManager>();
             _slideNote = spawnedInstance.GetComponent<BaseNote>() as SlideNoteController;
             offsetHitTime = tapDuration / 2;            
             _slideNote.hitTime = clipStartTime + offsetHitTime;

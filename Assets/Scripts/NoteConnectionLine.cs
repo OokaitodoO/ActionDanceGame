@@ -6,9 +6,7 @@ public class NoteConnectionLine : MonoBehaviour
     [SerializeField] private Transform end;
 
     [SerializeField] private LineRenderer lineRenderer;
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {        
         lineRenderer = GetComponent<LineRenderer>();

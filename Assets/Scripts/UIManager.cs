@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class RhythmUI : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     [Header("In game")]
     [SerializeField] private TMP_Text score;

@@ -18,8 +18,6 @@ public class NoteAccuracyConfig
     public double GoodOffset => hitOffset * 1.5f;
     public double BadOffset => hitOffset * 2f;
 
-
-
     public int GetScoreByAccuracyType(AccuracyType accuracy)
     {
         switch (accuracy)
@@ -39,24 +37,20 @@ public class NoteAccuracyConfig
     {        
         if (currentTime <= hitTime + PerfectOffset 
             && currentTime >= hitTime - PerfectOffset)
-        {
-            //Debug.Log("Perfect");
+        {            
             return AccuracyType.Perfect;
         }
         else if (currentTime <= (hitTime + GoodOffset) 
                 && currentTime >= (hitTime - GoodOffset))
-        {
-            //Debug.Log("Good");
+        {         
             return AccuracyType.Good;
         }
         else if (currentTime <= (hitTime + BadOffset) 
                 && currentTime >= (hitTime - BadOffset))
-        {
-            //Debug.Log("Bad");
+        {         
             return AccuracyType.Bad;
         }
-
-        //Debug.Log("Miss");
+        
         return AccuracyType.Miss;
     }    
 }

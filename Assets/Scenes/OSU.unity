@@ -298,7 +298,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 189503650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4b31cd2ffaf58d44880d84579db82be, type: 3}
+  m_Script: {fileID: 11500000, guid: 3967d0c8d2dcf9d42b72545bbafa258d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   director: {fileID: 189503656}
@@ -414,13 +414,15 @@ PlayableDirector:
   m_GameObject: {fileID: 189503650}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 39405632b5b8f754a95c8ab8de967d7f, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 2929e93970b528042876a388dcaf9bec, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 0
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 3582002890372485082, guid: 39405632b5b8f754a95c8ab8de967d7f, type: 2}
+    value: {fileID: 189503655}
+  - key: {fileID: 3482165837191499973, guid: 2929e93970b528042876a388dcaf9bec, type: 2}
     value: {fileID: 189503655}
   m_ExposedReferences:
     m_References: []
@@ -1940,7 +1942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1079310151
 RectTransform:
   m_ObjectHideFlags: 0

@@ -50,7 +50,7 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         this.canvas = canvas;
     }
 
-    public virtual void SetDirectorNController(PlayableDirector director, RhythmManager controller)
+    public virtual void SetDirectorNController(PlayableDirector director, GameManager controller)
     {
         this.director = director;        
     }
