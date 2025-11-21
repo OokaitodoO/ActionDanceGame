@@ -142,7 +142,7 @@ public class RhythmManager : MonoBehaviour
 
     private void OnSuccessNote(BaseNote note)
     {                
-        //Set accuracy
+        //Set accuracy        
         DeQueue();
         SetNoteToFront();       
         AddSocre(note.accuracy);
