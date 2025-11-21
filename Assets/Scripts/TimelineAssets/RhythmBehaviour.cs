@@ -28,8 +28,7 @@ public class RhythmBehaviour : PlayableBehaviour
             spawnedInstance = Object.Instantiate(prefabToSpawn, canvasParent);
             var rect = spawnedInstance.GetComponent<RectTransform>();
             if(rect)
-                rect.localPosition = spawnLocation;                   
-            spawnedInstance.name = $"{prefabToSpawn.name}_Instance";
+                rect.localPosition = spawnLocation;                               
 
             //Send base note to controller
             var director = playable.GetGraph().GetResolver() as PlayableDirector;
@@ -40,6 +39,8 @@ public class RhythmBehaviour : PlayableBehaviour
             noteLength = currentNote.hitTime + AccConfig.PerfectOffset;
 
             controller.AddQueue(currentNote);
+
+            spawnedInstance.name = $"{prefabToSpawn.name}_Instance_{controller.GetQueueCount()}";
         }
     }
 

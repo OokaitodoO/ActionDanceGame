@@ -41,6 +41,11 @@ public class SwipeNoteController : BaseNote
         {
             startPos = eventData.position;
         }
+        else
+        {
+            base.Check();
+            startPos = eventData.position;
+        }
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -59,7 +64,7 @@ public class SwipeNoteController : BaseNote
                 inputDirection = SwipeDirection(delta);
                 //Check input direction = random direction?
                 if (inputDirection == direction)
-                {
+                {                    
                     accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
                     base.Success();
                 }

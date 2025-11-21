@@ -23,6 +23,12 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     protected event Action<BaseNote> OnTap;
     protected event Action<BaseNote> OnSuccess;
     protected event Action<BaseNote> OnMiss;
+    protected event Action<BaseNote> OnCheck;
+
+    public void SetOnCheckListener(Action<BaseNote> onCheck)
+    {
+        OnCheck = onCheck;
+    }
 
     public void SetOnTapListener(Action<BaseNote> onTap)
     {
@@ -75,6 +81,11 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     public virtual void Missed()
     {
         OnMiss?.Invoke(this);
+    }
+
+    public virtual void Check()
+    {
+        OnCheck?.Invoke(this);
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)

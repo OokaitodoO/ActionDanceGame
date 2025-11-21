@@ -42,13 +42,20 @@ public class SlideNoteController : BaseNote
             accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
             //Start moving to end point
             StartMoving();
-
+        }
+        else
+        {
+            //Dequeue all previous note
+            base.Check();
+            //Get score with this note
+            accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
+            //Start moving to end point
+            StartMoving();
         }
     }
 
     public override void OnDrag(PointerEventData eventData)
-    {
-        Debug.Log($"On drag");
+    {        
         List<RaycastResult> results = new List<RaycastResult>();
 
         _raycaster.Raycast(eventData, results);

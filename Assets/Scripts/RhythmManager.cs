@@ -1,8 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Playables;
+using UnityEngine.Rendering;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
@@ -83,6 +86,11 @@ public class RhythmManager : MonoBehaviour
     }
     #endregion
 
+    public int GetQueueCount()
+    {
+        return _queueNotes.Count;
+    }
+
     public void AddQueue(BaseNote note)
     {        
         //Add queue
@@ -94,6 +102,7 @@ public class RhythmManager : MonoBehaviour
         note.SetOnTapListener(OnTapNote);
         note.SetOnSuccessListener(OnSuccessNote);
         note.SetOnMissListener(OnMissNote);
+        note.SetOnCheckListener(OnCheckCurrentNote);
         SetNoteToFront();
     }
 
@@ -126,9 +135,21 @@ public class RhythmManager : MonoBehaviour
         }
     }        
 
-    private void CalculateScore()
+    public void OnCheckCurrentNote(BaseNote note)
     {
+        BaseNote peek;
 
+        while (_queueNotes.TryPeek(out peek))
+        {
+            if (peek != note)
+            {
+                OnMissNote(peek);
+            }
+            else
+            {
+                break;
+            }
+        }
     }
 
     private void OnTapNote(BaseNote note)
@@ -141,10 +162,10 @@ public class RhythmManager : MonoBehaviour
     }
 
     private void OnSuccessNote(BaseNote note)
-    {                
+    {
         //Set accuracy        
         DeQueue();
-        SetNoteToFront();       
+        SetNoteToFront();
         AddSocre(note.accuracy);
         rhythmUI.UpdateAccuracy(note.accuracy);
 
