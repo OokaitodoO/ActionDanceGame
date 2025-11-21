@@ -64,6 +64,13 @@ public class RhythmBehaviour : PlayableBehaviour
             {
                 currentNote.Missed();
             }
+            else if (localTime >= offsetHitTime)
+            {
+                if (!Application.isPlaying)
+                {
+                    DestroyNoteByBehaviour(spawnedInstance, currentNote);
+                }
+            }
         }
     }
 

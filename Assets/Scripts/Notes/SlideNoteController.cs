@@ -129,8 +129,7 @@ public class SlideNoteController : BaseNote
     public void MoveToEndPositionPreview(double localTime)
     {
         if (isMoving)
-        {
-            Debug.Log($"Moving");
+        {            
             float T_norm = Mathf.Clamp01(((float)localTime - (float)startMovingTime) / ((float)clipLength - (float)startMovingTime));       
             holderTransform.position = Vector3.Lerp(startTransform.position, endTransform.position, T_norm);
             if (Vector3.Distance(holderTransform.position, endTransform.position) <= 0.1f)

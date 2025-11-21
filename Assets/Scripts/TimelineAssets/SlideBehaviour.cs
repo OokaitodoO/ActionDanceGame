@@ -30,6 +30,8 @@ public class SlideBehaviour : RhythmBehaviour
             _slideNote.clipLength = clipEndTime - clipStartTime;
             _slideNote.SetListenerMoving(OnTapStartMovingHolder);
 
+            noteLength = offsetHitTime + AccConfig.PerfectOffset;
+
             //Set note position
             var rectStart = _slideNote.GetStartTransform();
             if (rectStart)
@@ -61,24 +63,25 @@ public class SlideBehaviour : RhythmBehaviour
         if (_slideNote)
         {
             if (!_slideNote.isMoving)
-            {
-                Debug.Log("not moving");
+            {                
                 startMovingTime = localTime;
                 _slideNote.UpdateOutline(offsetHitTime, clipStartTime, localTime);
-                if (localTime >= tapDuration)
+                if (localTime >= noteLength)
+                {                    
+                    //For stand alone                    
+                    if(Application.isPlaying)
+                    {
+                        _slideNote.Missed();                        
+                        _slideNote = null;
+                    }                    
+                }
+                else if (localTime >= offsetHitTime)
                 {
-                    Debug.Log("Past tap time");
-                    //For stand alone
+                    //For stand alone  
                     if (!Application.isPlaying)
                     {
                         _slideNote.isMoving = true;
                     }
-                    else
-                    {
-                        _slideNote.Missed();
-                        //DestroyNoteByBehaviour(spawnedInstance, _slideNote);
-                        _slideNote = null;
-                    }                    
                 }
             }
             else
