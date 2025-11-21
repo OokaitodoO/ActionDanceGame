@@ -13,7 +13,7 @@ public class TapNoteController : BaseNote
         }
         else
         {
-            base.Check();
+            base.CheckPlayNote();
 
             accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
             base.Success();

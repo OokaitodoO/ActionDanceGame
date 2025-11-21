@@ -36,10 +36,10 @@ public class GameManager : MonoBehaviour
     private int miss;
     private int h_combo;
 
-    private void OnValidate()
-    {
-        InitTrack();
-    }
+    //private void OnValidate()
+    //{
+    //    InitTrack();
+    //}
 
     private void Start()
     {

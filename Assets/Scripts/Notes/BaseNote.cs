@@ -56,11 +56,8 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     }
 
     public virtual void Initialize()
-    {
-        //Set accuracy
-        accuracy = AccuracyType.Miss;
-
-        //Init outline scale
+    {        
+        accuracy = AccuracyType.Miss;        
         outLine.localScale = StartScale;              
     }
 
@@ -83,7 +80,7 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         OnMiss?.Invoke(this);
     }
 
-    public virtual void Check()
+    public virtual void CheckPlayNote()
     {
         OnCheck?.Invoke(this);
     }

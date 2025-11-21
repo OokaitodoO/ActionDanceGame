@@ -43,7 +43,7 @@ public class SwipeNoteController : BaseNote
         }
         else
         {
-            base.Check();
+            base.CheckPlayNote();
             startPos = eventData.position;
         }
     }

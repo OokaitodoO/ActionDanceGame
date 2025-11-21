@@ -46,7 +46,7 @@ public class SlideNoteController : BaseNote
         else
         {
             //Dequeue all previous note
-            base.Check();
+            base.CheckPlayNote();
             //Get score with this note
             accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
             //Start moving to end point
