@@ -15,7 +15,7 @@ public class SwipeNoteController : BaseNote
     private const float MIN_DISTANCE = 50f;
 
     [Space]
-    [SerializeField] private Image directionImage;
+    [SerializeField] private GameObject directionImage;
     [SerializeField] private DirectionConfig direction;
     [SerializeField] private bool isRandom;
 
@@ -66,7 +66,7 @@ public class SwipeNoteController : BaseNote
                 if (inputDirection == direction)
                 {                    
                     accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
-                    base.Success();
+                    base.Success();                    
                 }
                 else
                 {
@@ -83,7 +83,8 @@ public class SwipeNoteController : BaseNote
 
     private void SetImageDirectionRotation()
     {
-        directionImage.rectTransform.localRotation = Quaternion.AngleAxis(rotationDefination[direction], Vector3.forward);
+        var rect = directionImage.GetComponent<RectTransform>();
+        rect.localRotation = Quaternion.AngleAxis(rotationDefination[direction], Vector3.forward);
     }
 
     private DirectionConfig SwipeDirection(Vector2 delta)

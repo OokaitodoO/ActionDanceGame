@@ -14,6 +14,11 @@ public class NoteAccuracyConfig
 {
     private const float hitOffset = 0.25f;
 
+    private Color perfectColor = Color.green;
+    private Color goodColor = Color.blue;
+    private Color badColor = Color.grey;
+    private Color missColor = Color.red;
+
     public double PerfectOffset => hitOffset;
     public double GoodOffset => hitOffset * 1.5f;
     public double BadOffset => hitOffset * 2f;
@@ -53,4 +58,20 @@ public class NoteAccuracyConfig
         
         return AccuracyType.Miss;
     }    
+
+    public Color GetAccColor(AccuracyType acc)
+    {
+        switch (acc)
+        {
+            case AccuracyType.Perfect:
+                return perfectColor;
+            case AccuracyType.Good:
+                return goodColor;
+            case AccuracyType.Bad:
+                return badColor;
+            default:
+                return missColor;
+        }
+    }
+   
 }

@@ -9,14 +9,14 @@ public class TapNoteController : BaseNote
         if (interacable)
         {
             accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
-            base.Success();
+            base.Success();            
         }
         else
         {
             base.CheckPlayNote();
 
             accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
-            base.Success();
+            base.Success();            
         }
     }
 }

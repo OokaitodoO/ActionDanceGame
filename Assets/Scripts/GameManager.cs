@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform noteParent;
     [SerializeField] private Canvas canvas;
     [Space]
+    [SerializeField] private GameObject noteVFX;
+    [Space]
     [SerializeField] private UIManager rhythmUI;
     [SerializeField] private GameObject gameplayPanel;
     [SerializeField] private GameObject startBtn;
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        //Init track
+        InitTrack();
         //Reset variable
         ResetCombo();
         ResetSocre();               
@@ -72,7 +76,7 @@ public class GameManager : MonoBehaviour
 
         //Update summaray
         //Debug.Log($"{perfect}, {good}, {bad}, {miss}, {h_combo}, {_currentScore}");
-        rhythmUI.UpdateStatisticAcc(perfect, good, bad, miss, h_combo, _currentScore);
+        rhythmUI.UpdateStatistic(perfect, good, bad, miss, h_combo, _currentScore);
         var grade = _gradeConfig.CalculateGrade(_currentScore);
         rhythmUI.UpdateGrade(grade);        
     }
@@ -87,7 +91,7 @@ public class GameManager : MonoBehaviour
     {                
         _queueNotes.Enqueue(note);
         
-        note.SetDirectorNController(director, this);
+        note.SetDirectorNManager(director, this);
         note.SetCanvas(canvas);
         note.Initialize();
 
@@ -154,8 +158,11 @@ public class GameManager : MonoBehaviour
         //Set accuracy        
         DeQueue();
         SetNoteToFront();
+
         AddSocre(note.accuracy);
-        rhythmUI.UpdateAccuracy(note.accuracy);
+        //rhythmUI.UpdateAccuracy(note.accuracy);
+
+        CreateNoteVFX(note.accuracy, note.transform.localPosition);
 
         Destroy(note.gameObject);
     }
@@ -165,8 +172,10 @@ public class GameManager : MonoBehaviour
         DeQueue();
         SetNoteToFront();
         ResetCombo();        
-        rhythmUI.UpdateAccuracy(AccuracyType.Miss);        
+        //rhythmUI.UpdateAccuracy(AccuracyType.Miss);        
         CountStatistic(AccuracyType.Miss);
+
+        CreateNoteVFX(note.accuracy, note.transform.localPosition);
 
         if (!Application.isPlaying)
         {
@@ -188,7 +197,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ResetCombo()
+    public void ResetCombo()
     {
         _currentCombo = 0;
         rhythmUI.UpdateCombo(_currentCombo);
@@ -251,4 +260,15 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }    
+
+    private void CreateNoteVFX(AccuracyType accuracy, Vector3 position)
+    {
+        var goVFX = Instantiate(noteVFX, noteParent);
+        goVFX.transform.localPosition = position;
+        var comp = goVFX.GetComponent<NoteVFX>();
+        var color = _accuracyConfig.GetAccColor(accuracy);
+        comp.SetText(accuracy.ToString(), color);
+
+        Destroy(goVFX, 0.8f);
+    }
 }

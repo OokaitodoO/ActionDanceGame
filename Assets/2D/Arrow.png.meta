@@ -1,10 +1,73 @@
 fileFormatVersion: 2
-guid: 5884efcc57fb81f45a60f8a43865478c
+guid: 9d7d903e71dac654d825e9db6977a797
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -51626319457380659
-    second: circle_Tap_0
+      213: 8848332829562067195
+    second: infographic-arrows-pack_0
+  - first:
+      213: -8169357843101400782
+    second: infographic-arrows-pack_1
+  - first:
+      213: -4460500652969284109
+    second: infographic-arrows-pack_2
+  - first:
+      213: -7620786283903634388
+    second: infographic-arrows-pack_3
+  - first:
+      213: 3323679270559642751
+    second: infographic-arrows-pack_4
+  - first:
+      213: -4037721604722244659
+    second: infographic-arrows-pack_5
+  - first:
+      213: 7291646340613015302
+    second: infographic-arrows-pack_6
+  - first:
+      213: -6938894847722676581
+    second: infographic-arrows-pack_7
+  - first:
+      213: 8125809847608768100
+    second: infographic-arrows-pack_8
+  - first:
+      213: -9048125797278916002
+    second: infographic-arrows-pack_9
+  - first:
+      213: -7177113555775358681
+    second: infographic-arrows-pack_10
+  - first:
+      213: -7575503995102222283
+    second: infographic-arrows-pack_11
+  - first:
+      213: -1138450320312039142
+    second: infographic-arrows-pack_12
+  - first:
+      213: -2385830605834660296
+    second: infographic-arrows-pack_13
+  - first:
+      213: -8365271386354245580
+    second: infographic-arrows-pack_14
+  - first:
+      213: 6692928047484200396
+    second: infographic-arrows-pack_15
+  - first:
+      213: 881357971338988135
+    second: infographic-arrows-pack_16
+  - first:
+      213: 4269442701530820923
+    second: infographic-arrows-pack_17
+  - first:
+      213: -8000000932101753014
+    second: infographic-arrows-pack_18
+  - first:
+      213: -8075664554577731497
+    second: infographic-arrows-pack_19
+  - first:
+      213: -3711624434366290646
+    second: infographic-arrows-pack_20
+  - first:
+      213: -5941458695931749695
+    second: infographic-arrows-pack_21
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +109,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,11 +176,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: circle_Tap_0
+      name: Arrow_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 735
+        y: 188
         width: 512
         height: 512
       alignment: 0
@@ -126,10 +189,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dc69eafc226984ff0800000000000000
-      internalID: -51626319457380659
+      spriteID: d1bde05f226b0ad4f95df1ad1435d268
+      internalID: 1764783681
       vertices: []
       indices: 
       edges: []
@@ -138,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: d8b7e0ed082ec3d4d8dcdb02cc25b3ed
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +211,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      circle_Tap_0: -51626319457380659
+      Arrow_0: -8957959
+      Arrow_1: 992291166
+      Arrow_2: -1034001388
+      Arrow_3: 826853201
+      Arrow_4: 1863481298
+      Arrow_5: -304352671
+      Arrow_6: 1518143147
+      Arrow_7: 1764783681
+      Arrow_8: 1077170029
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

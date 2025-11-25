@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
         accuracy.SetText(acc.ToString());
     }
 
-    public void UpdateStatisticAcc(int perfect, int good, int bad, int miss, int h_combo, int score)
+    public void UpdateStatistic(int perfect, int good, int bad, int miss, int h_combo, int score)
     {
         perfectCount.SetText($"Perfect : {perfect}");
         goodCount.SetText($"Good : {good}");

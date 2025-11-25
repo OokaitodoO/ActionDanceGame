@@ -67,21 +67,10 @@ public class SlideBehaviour : RhythmBehaviour
                 startMovingTime = localTime;
                 _slideNote.UpdateOutline(offsetHitTime, clipStartTime, localTime);
                 if (localTime >= noteLength)
-                {                    
-                    //For stand alone                    
-                    if(Application.isPlaying)
-                    {
-                        _slideNote.Missed();                        
-                        _slideNote = null;
-                    }                    
-                }
-                else if (localTime >= offsetHitTime)
                 {
-                    //For stand alone  
-                    if (!Application.isPlaying)
-                    {
-                        _slideNote.isMoving = true;
-                    }
+                    _slideNote.isMoving = true;
+                    _slideNote.accuracy = AccuracyType.Miss;
+                    controller.ResetCombo();
                 }
             }
             else
@@ -96,6 +85,8 @@ public class SlideBehaviour : RhythmBehaviour
                 }
                 else
                 {
+                    _slideNote.startMovingTime = startMovingTime;
+                    _slideNote.GetHolderTransform().gameObject.SetActive(true);
                     _slideNote.MoveToEndPosition(localTime);
                 }
             }                       

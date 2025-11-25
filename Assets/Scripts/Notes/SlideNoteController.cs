@@ -15,11 +15,15 @@ public class SlideNoteController : BaseNote
     [SerializeField] private Transform startTransform;
     [SerializeField] private Transform endTransform;
     [SerializeField] private Transform holderTransform;
+    [SerializeField] private Image holderImage;
     [SerializeField] private Transform arrowTransform;
     [SerializeField] private NoteConnectionLine line;
 
     private GraphicRaycaster _raycaster;
     private bool _isOverTarget;
+
+    private Color missHolderColor = new(0.5f, 0.5f, 0.5f);
+    private Color activeHolderColor = Color.white;
 
     public override void Initialize()
     {
@@ -27,8 +31,10 @@ public class SlideNoteController : BaseNote
         _raycaster = canvas.GetComponent<GraphicRaycaster>();
         line.SetConnectionLine();
         SetArrowRotation();
+
+        SetHolderColor(missHolderColor);
     }
-    
+
     public void SetListenerMoving(Action<SlideNoteController> action)
     {
         OnTapStartMoving = action;
@@ -38,10 +44,18 @@ public class SlideNoteController : BaseNote
     {
         if (interacable)
         {
-            //Get accuracy but not yet success
-            accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
-            //Start moving to end point
-            StartMoving();
+            if (!isMoving)
+            {
+                //Get accuracy but not yet success
+                accuracy = _accuracyConfig.CalculateAccuracy(director.time, hitTime);
+                //Start moving to end point
+                StartMoving();
+                SetHolderColor(activeHolderColor);
+            }
+            else
+            {
+                SetHolderColor(activeHolderColor);
+            }
         }
         else
         {
@@ -55,7 +69,7 @@ public class SlideNoteController : BaseNote
     }
 
     public override void OnDrag(PointerEventData eventData)
-    {        
+    {
         List<RaycastResult> results = new List<RaycastResult>();
 
         _raycaster.Raycast(eventData, results);
@@ -63,26 +77,33 @@ public class SlideNoteController : BaseNote
         bool currentlyOverTarget = false;
 
         foreach (RaycastResult result in results)
-        {            
+        {
             if (result.gameObject == holderTransform.gameObject)
             {
                 currentlyOverTarget = true;
                 break;
             }
-        }        
+        }
 
         if (currentlyOverTarget && !_isOverTarget)
-        {            
-            //Debug.Log("Pointer ENTERED Target Object while dragging!");            
+        {
+            //Debug.Log("Pointer ENTERED Target Object while dragging!");
+            if (accuracy == AccuracyType.Miss)
+            {
+                accuracy = AccuracyType.Bad;
+            }
+            SetHolderColor(activeHolderColor);
         }
         else if (!currentlyOverTarget && _isOverTarget)
         {
             //Debug.Log("Pointer EXITED Target Object while dragging!");
-            isMoving = false;
-
-            base.Missed();
+            //isMoving = false;
+            SetHolderColor(missHolderColor);
+            accuracy = AccuracyType.Bad;   
+            manager.ResetCombo();
+            //base.Missed();
         }
-        
+
         _isOverTarget = currentlyOverTarget;
     }
 
@@ -90,8 +111,11 @@ public class SlideNoteController : BaseNote
     {
         //If release while note moving will miss this note
         if (isMoving)
-        {            
-            base.Missed();
+        {
+            accuracy = AccuracyType.Bad;
+            SetHolderColor(missHolderColor);
+            manager.ResetCombo();
+            //base.Missed();
         }
     }
 
@@ -130,16 +154,21 @@ public class SlideNoteController : BaseNote
             {
                 Arrived();
             }
-        }       
+        }
     }
 
     public void MoveToEndPositionPreview(double localTime)
     {
         if (isMoving)
-        {            
-            float T_norm = Mathf.Clamp01(((float)localTime - (float)startMovingTime) / ((float)clipLength - (float)startMovingTime));       
+        {
+            float T_norm = Mathf.Clamp01(((float)localTime - (float)startMovingTime) / ((float)clipLength - (float)startMovingTime));
             holderTransform.position = Vector3.Lerp(startTransform.position, endTransform.position, T_norm);
         }
+    }
+
+    public void SetHolderColor(Color color)
+    {
+        holderImage.color = color;
     }
 
     private void Arrived()

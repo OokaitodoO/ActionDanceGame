@@ -9,9 +9,10 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     [Header("Out line")]
     [SerializeField] protected Transform outLine;    
     [SerializeField] private Vector2 StartScale;
-    [SerializeField] private Vector2 EndScale;
+    [SerializeField] private Vector2 EndScale;    
 
-    protected PlayableDirector director; 
+    protected PlayableDirector director;
+    protected GameManager manager;
     protected Canvas canvas;
     protected Button button;
 
@@ -50,9 +51,10 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         this.canvas = canvas;
     }
 
-    public virtual void SetDirectorNController(PlayableDirector director, GameManager controller)
+    public virtual void SetDirectorNManager(PlayableDirector director, GameManager manager)
     {
-        this.director = director;        
+        this.director = director;
+        this.manager = manager;
     }
 
     public virtual void Initialize()
@@ -85,6 +87,7 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         OnCheck?.Invoke(this);
     }
 
+    #region EventSystem
     public virtual void OnPointerDown(PointerEventData eventData)
     {        
         OnTap?.Invoke(this);
@@ -99,4 +102,5 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     {
         
     }
+    #endregion
 }
