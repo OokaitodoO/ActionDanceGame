@@ -302,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   director: {fileID: 189503656}
+  audioSource: {fileID: 189503655}
   noteParent: {fileID: 1456257183}
   canvas: {fileID: 1585853620}
   rhythmUI: {fileID: 1585853622}
@@ -414,7 +415,7 @@ PlayableDirector:
   m_GameObject: {fileID: 189503650}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 2929e93970b528042876a388dcaf9bec, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 39405632b5b8f754a95c8ab8de967d7f, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 0
@@ -2673,6 +2674,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 189503654}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: InitTrack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1721220875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2822,6 +2835,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MenuPanel, Assembly-CSharp
         m_MethodName: SetDirectorAsset
         m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 189503654}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: InitTrack
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

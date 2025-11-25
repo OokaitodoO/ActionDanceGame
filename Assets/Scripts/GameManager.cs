@@ -1,17 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.Playables;
-using UnityEngine.Rendering;
 using UnityEngine.Timeline;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayableDirector director;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private Transform noteParent;
     [SerializeField] private Canvas canvas;
     [Space]
@@ -27,6 +23,8 @@ public class GameManager : MonoBehaviour
     private ComboConfig _comboConfig = new();
     private GradeConfig _gradeConfig = new();
 
+    private const double startDelayTime = 0.5f;
+
     private int _currentCombo;
     private int _currentScore;
 
@@ -36,14 +34,9 @@ public class GameManager : MonoBehaviour
     private int miss;
     private int h_combo;
 
-    //private void OnValidate()
-    //{
-    //    InitTrack();
-    //}
-
     private void Start()
     {
-        //InitTrack();
+        InitTrack();
         Initialize();        
     }
 
@@ -63,9 +56,8 @@ public class GameManager : MonoBehaviour
     {
         //Reset variable
         ResetCombo();
-        ResetSocre();
-
-        director.Play();
+        ResetSocre();               
+        director.Play();        
     }
 
     public void EndGame(PlayableDirector director)
