@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text totalScore;
     [SerializeField] private TMP_Text highestCombo;
     [SerializeField] private TMP_Text grade;
+    [Header("Song")]
+    [SerializeField] private Transform songParent;
 
     public void UpdateScore(int currentScore)
     {

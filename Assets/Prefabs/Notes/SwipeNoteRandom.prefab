@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 39027155923314128}
   - component: {fileID: 919792614172918455}
   - component: {fileID: 1798495272641988918}
+  - component: {fileID: -8152172675456682576}
   m_Layer: 0
   m_Name: SwipeNoteRandom
   m_TagString: Untagged
@@ -295,6 +296,28 @@ MonoBehaviour:
   direction: 0
   isRandom: 1
   inputDirection: 0
+--- !u!95 &-8152172675456682576
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4209982530220668858}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d48a2a5225d1c0445802f6fc854bd5a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6637896247989312957
 GameObject:
   m_ObjectHideFlags: 0

@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 39027155923314128}
   - component: {fileID: -7950698070819812754}
   - component: {fileID: -7352233025375360089}
+  - component: {fileID: 8895272164610621395}
   m_Layer: 0
   m_Name: MultiTapNote
   m_TagString: Untagged
@@ -205,6 +206,28 @@ MonoBehaviour:
   tapAmount: 10
   number: {fileID: 3405545003916244243}
   text: {fileID: 3405545003916244243}
+--- !u!95 &8895272164610621395
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4209982530220668858}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d48a2a5225d1c0445802f6fc854bd5a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5018831464434973108
 GameObject:
   m_ObjectHideFlags: 0

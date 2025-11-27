@@ -2036,7 +2036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipStartTime: 46.93333299999999
   clipEndTime: 49.43333299999999
-  definition: {fileID: 11400000, guid: 877e7c370b316b24098fef93c4484d99, type: 2}
+  definition: {fileID: 11400000, guid: 3d6f0d9865fa04c40acec7d2dc0a93e5, type: 2}
   spawnPosition: {x: 650, y: 110, z: 0}
   canvasParent: {fileID: 0}
   _spawnedInstance: {fileID: 0}
@@ -2404,7 +2404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipStartTime: 46.46666633333333
   clipEndTime: 48.96666633333333
-  definition: {fileID: 11400000, guid: 877e7c370b316b24098fef93c4484d99, type: 2}
+  definition: {fileID: 11400000, guid: 96600177178200447bc5e87764c62126, type: 2}
   spawnPosition: {x: 650, y: -220, z: 0}
   canvasParent: {fileID: 0}
   _spawnedInstance: {fileID: 0}
@@ -7242,7 +7242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipStartTime: 47.884615051282054
   clipEndTime: 50.384615051282054
-  definition: {fileID: 11400000, guid: 877e7c370b316b24098fef93c4484d99, type: 2}
+  definition: {fileID: 11400000, guid: c8717526154aaef4fa9fb22c1d6cd7a1, type: 2}
   spawnPosition: {x: -650, y: -220, z: 0}
   canvasParent: {fileID: 0}
   _spawnedInstance: {fileID: 0}
@@ -9394,7 +9394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipStartTime: 47.38333299999999
   clipEndTime: 49.88333299999999
-  definition: {fileID: 11400000, guid: 877e7c370b316b24098fef93c4484d99, type: 2}
+  definition: {fileID: 11400000, guid: fee4595259ddbab43a514d155f3cd9c6, type: 2}
   spawnPosition: {x: -650, y: 110, z: 0}
   canvasParent: {fileID: 0}
   _spawnedInstance: {fileID: 0}
@@ -25146,6 +25146,8 @@ MonoBehaviour:
     m_Objects: []
   BPM: 130
   offset: 0
+  length: 0
+  overrideLength: 0
 --- !u!114 &8666034763351015992
 MonoBehaviour:
   m_ObjectHideFlags: 1
