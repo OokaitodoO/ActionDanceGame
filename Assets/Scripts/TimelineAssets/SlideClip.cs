@@ -11,8 +11,8 @@ public class SlideClip : RhythmClip
 
     public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
     {
-        slideTemplate.prefabToSpawn = defination.GetPrefab();
-        slideTemplate.tapDuration = defination.duration;
+        slideTemplate.prefabToSpawn = definition.GetPrefab();
+        slideTemplate.tapDuration = definition.duration;
         slideTemplate.spawnLocation = spawnPosition;
         slideTemplate.endPosition = endPosistion;
         slideTemplate.canvasParent = canvasParent;

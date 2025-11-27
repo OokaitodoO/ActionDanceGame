@@ -18,6 +18,7 @@ public class ManagerEditor : Editor
         if (GUILayout.Button("Initial track"))
         {
             gameManager.InitTrack();
+            Debug.Log($"Initial track from inspector");
         }
         EditorGUILayout.Space(10);
         base.OnInspectorGUI();

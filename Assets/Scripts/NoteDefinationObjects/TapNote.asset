@@ -19,4 +19,4 @@ MonoBehaviour:
   leftIcon: {fileID: 0}
   centerIcon: {fileID: 2800000, guid: 1c2a21dca3102544c951ed4850267cb9, type: 3}
   rightIcon: {fileID: 0}
-  bgColor: {r: 0, g: 0.5999999, b: 0, a: 1}
+  bgColor: {r: 0.16348293, g: 0.7735849, b: 0, a: 1}

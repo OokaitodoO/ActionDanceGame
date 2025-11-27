@@ -29,6 +29,7 @@ public class RhythmClipEditor : ClipEditor
             }          
         }
     }    
+       
 
     public override void DrawBackground(TimelineClip clip, ClipBackgroundRegion region)
     {

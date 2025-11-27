@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
-using static NoteDefination;
+using static NoteDefinition;
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "NewRhythmClip", menuName = "Timeline/RhythmClip")]
@@ -14,14 +14,14 @@ public class RhythmClip : PlayableAsset, ITimelineClipAsset
     [HideInInspector]
     public double clipEndTime;
 
-    [SerializeField] protected NoteDefination defination;
+    [SerializeField] protected NoteDefinition definition;
     [Header("Settings")]
     //[SerializeField] private double spawnTime;
     [SerializeField] protected Vector3 spawnPosition;
 
     protected RhythmBehaviour template = new();
-    public double FixedDuration => defination.duration;
-    public bool isLockedDuration => defination.isLocked;
+    public double FixedDuration => definition.duration;
+    public bool isLockedDuration => definition.isLocked;
 
     [HideInInspector]
     public Transform canvasParent;
@@ -32,7 +32,7 @@ public class RhythmClip : PlayableAsset, ITimelineClipAsset
 
     public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
     {
-        template.prefabToSpawn = defination.GetPrefab();
+        template.prefabToSpawn = definition.GetPrefab();
         template.spawnLocation = spawnPosition;
         template.canvasParent = canvasParent;
 
@@ -42,9 +42,9 @@ public class RhythmClip : PlayableAsset, ITimelineClipAsset
         return ScriptPlayable<RhythmBehaviour>.Create(graph, template);
     }      
 
-    public NoteDefination GetDefination()
+    public NoteDefinition GetDefination()
     {
-        return defination;
+        return definition;
     }
 
     private void OnSpawnInstance(GameObject instance)

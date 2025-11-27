@@ -14,10 +14,9 @@ public class TempoTrack : TrackAsset
 
     public float BPM;
     public float offset;
+    [SerializeField] private float length;
+    [SerializeField] private bool overrideLength;
 
-    /// <summary>
-    /// Use for call on inspector button by TempTrackEditor
-    /// </summary>
     public void GenerateTempo()
     {
         Debug.Log("Log from generate tempo");
@@ -52,22 +51,15 @@ public class TempoTrack : TrackAsset
 
     private int FindNumberOfBeat()
     {
-        double beatInterval = 60.0 / BPM;
-
-        double availableTime = SONGLENGTH - offset;
-
+        double beatInterval = 60.0 / BPM;        
+        double availableTime = overrideLength? length - offset : SONGLENGTH - offset;
         if (availableTime <= 0)
         {
             Debug.LogWarning("Offset exceeds total duration limit. No beats will be generated.");
             return 0;
-        }
-        
-        double rawBeatAmount = availableTime / beatInterval;
-        
-        int amount = (int)Math.Floor(rawBeatAmount);
-
-        //Debug.Log($"BPM: {BPM}, Beat Interval: {beatInterval:F3}s, Available Time: {availableTime:F3}s, Beats to generate: {amount}");
-
+        }        
+        double rawBeatAmount = availableTime / beatInterval;        
+        int amount = (int)Math.Floor(rawBeatAmount);        
         return amount;
     }
 }

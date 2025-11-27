@@ -1,17 +1,11 @@
 using UnityEngine;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "NewNoteDefination", menuName = "Timeline/NoteDefination")]
-public class NoteDefination : ScriptableObject
-{
-    public enum NoteType
-    {
-        Tap,
-        Slide,
-        Swipe,
-    }
-
+public class NoteDefinition : ScriptableObject
+{    
     [SerializeField] private GameObject prefab;
-    public NoteType type;
+    public NoteType noteType;
     public double duration;
     public bool isLocked;
 
