@@ -40,6 +40,11 @@ public class SlideNoteController : BaseNote
         OnTapStartMoving = action;
     }
 
+    public override Vector3 GetAccVFXPosition()
+    {
+        return endTransform.localPosition;
+    }
+
     public override void OnPointerDown(PointerEventData eventData)
     {
         if (interacable)

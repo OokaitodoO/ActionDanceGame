@@ -13,8 +13,7 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     protected PlayableDirector director;
     protected GameManager manager;
-    protected Canvas canvas;
-    protected Button button;
+    protected Canvas canvas;    
 
     public AccuracyType accuracy;
     public double hitTime;
@@ -44,6 +43,11 @@ public class BaseNote : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     public void SetOnMissListener(Action<BaseNote> onMiss)
     {
         OnMiss = onMiss;
+    }
+
+    public virtual Vector3 GetAccVFXPosition()
+    {
+        return transform.localPosition;
     }
 
     public void SetCanvas(Canvas canvas)

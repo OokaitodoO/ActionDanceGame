@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class GradeConfig
 {
+    public readonly int gradeSS = 102000;
+    public readonly int gradeS = 95000;    
+    public readonly int gradeA = 85000;    
+    public readonly int gradeB = 70000;    
+    public readonly int gradeC = 50000;    
+
     public enum GradeType
     {
         SS,
@@ -13,23 +19,23 @@ public class GradeConfig
     }
     public GradeType CalculateGrade(int score)
     {
-        if (score >= 102000)
+        if (score >= gradeSS)
         {
             return GradeType.SS;
         }
-        else if (score >= 95000)
+        else if (score >= gradeS)
         {
             return GradeType.S;
         }
-        else if (score >= 85000)
+        else if (score >= gradeA)
         {    
             return GradeType.A;
         }
-        else if (score >= 70000)
+        else if (score >= gradeB)
         {
             return GradeType.B;
         }
-        else if (score >= 50000)
+        else if (score >= gradeC)
         {
             return GradeType.C;
         }

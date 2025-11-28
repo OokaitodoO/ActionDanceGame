@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,9 +14,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject noteVFX;
     [Space]
     [SerializeField] private UIManager rhythmUI;
+    [SerializeField] private Button startBtn;
     [SerializeField] private GameObject gameplayPanel;
-    [SerializeField] private GameObject startBtn;
     [SerializeField] private GameObject summaryPanel;
+    [SerializeField] private GameObject menuPanel;
+    [Space]
+    [SerializeField] private SoundManager soundManager;
 
     private Queue<BaseNote> _queueNotes = new();
     private List<BaseNote> _notes = new();
@@ -37,8 +40,7 @@ public class GameManager : MonoBehaviour
     private int h_combo;
 
     private void Start()
-    {
-        InitTrack();
+    {        
         Initialize();        
     }
 
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour
 
         director.playOnAwake = false;
         director.stopped += EndGame;
+
+        startBtn.onClick.AddListener(StartGame);
     }
 
     public void StartGame()
@@ -60,7 +64,12 @@ public class GameManager : MonoBehaviour
         InitTrack();
         //Reset variable
         ResetCombo();
-        ResetSocre();               
+        ResetSocre();     
+        //Switch panel
+        gameplayPanel.SetActive(true);
+        menuPanel.SetActive(false);
+        rhythmUI.UpdateGrade(_gradeConfig, _currentScore);
+
         director.Play();        
     }
 
@@ -68,7 +77,10 @@ public class GameManager : MonoBehaviour
     {
         //Reset director
         director.Stop();
-        director.time = 0;        
+        director.time = 0;    
+        
+        //Clear queue note
+        _queueNotes.Clear();
 
         //Enable sum panel
         gameplayPanel.SetActive(false);
@@ -145,12 +157,9 @@ public class GameManager : MonoBehaviour
     }
 
     private void OnTapNote(BaseNote note)
-    {
-        Debug.Log("Tap note");
-        //Destroy note
-        //Dequeue and destroy note        
-        //Set current note to front
+    {        
         SetNoteToFront();
+        soundManager.PlayClickSound();
     }
 
     private void OnSuccessNote(BaseNote note)
@@ -162,7 +171,8 @@ public class GameManager : MonoBehaviour
         AddSocre(note.accuracy);
         //rhythmUI.UpdateAccuracy(note.accuracy);
 
-        CreateNoteVFX(note.accuracy, note.transform.localPosition);
+        CreateNoteVFX(note.accuracy, note.GetAccVFXPosition());
+        soundManager.PlayClickSound();
 
         Destroy(note.gameObject);
     }
@@ -171,11 +181,10 @@ public class GameManager : MonoBehaviour
     {
         DeQueue();
         SetNoteToFront();
-        ResetCombo();        
-        //rhythmUI.UpdateAccuracy(AccuracyType.Miss);        
+        ResetCombo();                     
         CountStatistic(AccuracyType.Miss);
 
-        CreateNoteVFX(note.accuracy, note.transform.localPosition);
+        CreateNoteVFX(note.accuracy, note.GetAccVFXPosition());
 
         if (!Application.isPlaying)
         {
@@ -233,7 +242,8 @@ public class GameManager : MonoBehaviour
         //score += combo multiplier * accuracy point
         _currentScore += Mathf.CeilToInt(_comboConfig.GetMultiplier(_currentCombo) * _accuracyConfig.GetScoreByAccuracyType(accuracy));
         CountStatistic(accuracy);
-        rhythmUI.UpdateScore(_currentScore);
+        rhythmUI.UpdateScore(_currentScore);        
+        rhythmUI.UpdateGrade(_gradeConfig, _currentScore);
     }
 
     private void AddCombo()
