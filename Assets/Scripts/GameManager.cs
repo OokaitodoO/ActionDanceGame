@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     public void Initialize()
     {
         ResetCombo();
-        ResetSocre();
+        ResetScore();
         ResetStatisic();
         InitTrack();
 
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         InitTrack();
         //Reset variable
         ResetCombo();
-        ResetSocre();     
+        ResetScore();     
         //Switch panel
         gameplayPanel.SetActive(true);
         menuPanel.SetActive(false);
@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
         rhythmUI.UpdateCombo(_currentCombo);
     }
 
-    private void ResetSocre()
+    private void ResetScore()
     {
         _currentScore = 0;
         rhythmUI.UpdateScore(_currentCombo);
@@ -273,12 +273,15 @@ public class GameManager : MonoBehaviour
 
     private void CreateNoteVFX(AccuracyType accuracy, Vector3 position)
     {
-        var goVFX = Instantiate(noteVFX, noteParent);
-        goVFX.transform.localPosition = position;
-        var comp = goVFX.GetComponent<NoteVFX>();
-        var color = _accuracyConfig.GetAccColor(accuracy);
-        comp.SetText(accuracy.ToString(), color);
+        if (Application.isPlaying)
+        {
+            var goVFX = Instantiate(noteVFX, noteParent);
+            goVFX.transform.localPosition = position;
+            var comp = goVFX.GetComponent<NoteVFX>();
+            var color = _accuracyConfig.GetAccColor(accuracy);
+            comp.SetText(accuracy.ToString(), color);
 
-        Destroy(goVFX, 0.8f);
+            Destroy(goVFX, 0.8f);
+        }        
     }
 }
