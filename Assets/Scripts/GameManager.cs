@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -28,6 +30,9 @@ public class GameManager : MonoBehaviour
     private ComboConfig _comboConfig = new();
     private GradeConfig _gradeConfig = new();
 
+    private Action onPreWarmComplete;
+    private bool _isPreWarm;
+
     private const double startDelayTime = 0.5f;
 
     private int _currentCombo;
@@ -40,7 +45,16 @@ public class GameManager : MonoBehaviour
     private int h_combo;
 
     private void Start()
-    {        
+    {
+        if (director)
+        {
+            director.playOnAwake = false;
+            director.stopped -= OnDirectorStopped;
+            director.stopped += OnDirectorStopped;
+
+            startBtn.onClick.AddListener(StartGame);
+            onPreWarmComplete = director.Play;
+        }
         Initialize();        
     }
 
@@ -50,12 +64,7 @@ public class GameManager : MonoBehaviour
         ResetCombo();
         ResetScore();
         ResetStatisic();
-        InitTrack();
-
-        director.playOnAwake = false;
-        director.stopped += EndGame;
-
-        startBtn.onClick.AddListener(StartGame);
+        InitTrack();        
     }
 
     public void StartGame()
@@ -64,21 +73,38 @@ public class GameManager : MonoBehaviour
         InitTrack();
         //Reset variable
         ResetCombo();
-        ResetScore();     
+        ResetScore();
         //Switch panel
         gameplayPanel.SetActive(true);
         menuPanel.SetActive(false);
         rhythmUI.UpdateGrade(_gradeConfig, _currentScore);
+        //director.Play();
+        PreWarmDirector().Forget();
+    }    
 
-        director.Play();        
+    private async UniTask PreWarmDirector()
+    {
+        if (director != null)
+        {
+            _isPreWarm = true;
+
+            director.RebuildGraph();
+            director.Stop();
+        }
+
+        await UniTask.Yield(PlayerLoopTiming.Update);
+
+        _isPreWarm = false;
+        onPreWarmComplete?.Invoke();
+        Debug.Log($"Prewarm is complete.");
     }
 
     public void EndGame(PlayableDirector director)
     {
         //Reset director
         director.Stop();
-        director.time = 0;    
-        
+        director.time = 0;
+
         //Clear queue note
         _queueNotes.Clear();
 
@@ -90,7 +116,18 @@ public class GameManager : MonoBehaviour
         //Debug.Log($"{perfect}, {good}, {bad}, {miss}, {h_combo}, {_currentScore}");
         rhythmUI.UpdateStatistic(perfect, good, bad, miss, h_combo, _currentScore);
         var grade = _gradeConfig.CalculateGrade(_currentScore);
-        rhythmUI.UpdateGrade(grade);        
+        rhythmUI.UpdateGrade(grade);
+    }
+
+    private void OnDirectorStopped(PlayableDirector director)
+    {
+        if (_isPreWarm)
+        {
+            _isPreWarm = false;
+            return;
+        }
+
+        EndGame(director);
     }
     #endregion
 
