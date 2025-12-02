@@ -23,6 +23,20 @@ public class UIManager : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private AnimationClip flash;
 
+    private void Start()
+    {
+        WrapGamePlayUIInitialize();
+    }
+
+    private void WrapGamePlayUIInitialize()
+    {
+        score.raycastTarget = false;
+        combo.raycastTarget = false;
+        accuracy.raycastTarget = false;
+        currentGrade.raycastTarget = false;
+        gradeProgressBar.raycastTarget = false;
+    }
+
     public void UpdateScore(int currentScore)
     {
         score.SetText(currentScore.ToString().PadLeft(6, '0'));
